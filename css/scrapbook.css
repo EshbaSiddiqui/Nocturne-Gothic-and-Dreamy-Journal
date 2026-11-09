@@ -1,0 +1,202 @@
+/**
+ * Nocturne - Creative Scrapbook Mode Styles
+ * Freeform vintage canvas, washi tape strips, polaroids, and paper scraps.
+ */
+
+.scrapbook-controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: rgba(23, 15, 34, 0.88);
+  border: 1px solid var(--border-ornate);
+  border-radius: var(--radius-md);
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.scrapbook-meta-inputs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scrapbook-title-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(169, 147, 201, 0.2);
+  color: var(--color-moonlight);
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  outline: none;
+  padding: 4px 0;
+  width: 280px;
+}
+.scrapbook-title-input:focus {
+  border-bottom-color: var(--color-lavender);
+}
+
+.scrapbook-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Freeform Canvas */
+.scrapbook-freeform-canvas {
+  width: 100%;
+  min-height: 750px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-ornate);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), inset 0 0 50px rgba(0, 0, 0, 0.5);
+  background: #190f24;
+}
+
+/* Canvas Themes */
+.scrapbook-freeform-canvas.theme-purple-dream {
+  background: radial-gradient(circle at 50% 50%, #2f1842 0%, #150920 100%);
+  background-image: radial-gradient(rgba(169, 147, 201, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.scrapbook-freeform-canvas.theme-gothic-garden {
+  background: radial-gradient(circle at 50% 50%, #17241d 0%, #0c1410 100%);
+  border-color: rgba(72, 107, 86, 0.4);
+}
+.scrapbook-freeform-canvas.theme-midnight-memories {
+  background: radial-gradient(circle at 60% 40%, #18112e 0%, #07050d 100%);
+  border-color: rgba(84, 42, 128, 0.4);
+}
+.scrapbook-freeform-canvas.theme-vintage-archive {
+  background: radial-gradient(circle at 50% 50%, #2c221b 0%, #140e0b 100%);
+  border-color: rgba(209, 167, 40, 0.3);
+}
+
+/* Items Placed on Scrapbook Board */
+.scrap-canvas-item {
+  position: absolute;
+  cursor: grab;
+  user-select: none;
+  transition: transform 0.05s ease-out;
+}
+.scrap-canvas-item:active {
+  cursor: grabbing;
+}
+
+.scrap-canvas-item.selected {
+  outline: 1.5px dashed var(--color-lavender);
+  outline-offset: 4px;
+}
+
+.scrap-canvas-item .item-selection-controls {
+  display: none;
+  position: absolute;
+  top: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(23, 15, 34, 0.95);
+  border: 1px solid var(--border-glowing);
+  border-radius: var(--radius-sm);
+  padding: 3px 6px;
+  gap: 4px;
+  z-index: 99;
+}
+.scrap-canvas-item.selected .item-selection-controls {
+  display: flex;
+}
+
+/* ================= POLAROID FRAMES ================= */
+.polaroid-frame {
+  background: #FAF6FE;
+  padding: 12px 12px 28px;
+  box-shadow: 2px 6px 18px rgba(0, 0, 0, 0.65);
+  border-radius: 2px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.polaroid-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  border-radius: 2px;
+  filter: contrast(105%) sepia(10%);
+}
+
+.polaroid-placeholder {
+  width: 100%;
+  height: 180px;
+  background: #251636;
+  border: 1px dashed rgba(169, 147, 201, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--color-lavender);
+  font-size: 11px;
+}
+
+.polaroid-placeholder .icon {
+  font-size: 24px;
+}
+
+.polaroid-caption {
+  font-family: var(--font-handwritten);
+  font-size: 19px;
+  color: #1a0f26;
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+  outline: none;
+}
+
+/* ================= WASHI TAPE STRIPS ================= */
+.washi-tape-strip {
+  height: 24px;
+  opacity: 0.88;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  clip-path: polygon(4% 0%, 96% 0%, 100% 100%, 0% 100%);
+}
+
+.washi-tape-strip.tape-lace {
+  background: #412658;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(231, 221, 245, 0.15) 6px, rgba(231, 221, 245, 0.15) 12px);
+}
+.washi-tape-strip.tape-purple {
+  background: #6a329e;
+}
+.washi-tape-strip.tape-rose {
+  background: #8e2b52;
+}
+.washi-tape-strip.tape-celestial {
+  background: #1b1735;
+  background-image: radial-gradient(#FFDF78 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* ================= HANDWRITTEN SCRAP NOTE ================= */
+.scrap-note-content {
+  padding: 16px 20px;
+  border-radius: 4px;
+  box-shadow: 2px 5px 14px rgba(0, 0, 0, 0.6);
+  font-family: var(--font-handwritten);
+  font-size: 22px;
+  color: var(--color-moonlight);
+  line-height: 1.5;
+  border: 1px solid rgba(169, 147, 201, 0.3);
+  outline: none;
+}
+
+.scrap-sticker-graphic {
+  width: 100%;
+  height: 100%;
+}

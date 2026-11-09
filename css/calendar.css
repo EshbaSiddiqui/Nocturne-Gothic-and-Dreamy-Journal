@@ -1,0 +1,386 @@
+/**
+ * Nocturne - Calendar & Memory Archive Styles
+ */
+
+.calendar-page-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 28px;
+}
+
+/* ================= MONTHLY CALENDAR GRID ================= */
+.calendar-card {
+  background: rgba(23, 15, 34, 0.88);
+  border: 1px solid var(--border-ornate);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-purple-sm);
+}
+
+.calendar-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.calendar-month-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--color-moonlight);
+}
+
+.calendar-weekdays-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--color-lavender);
+  margin-bottom: 8px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.calendar-day-cell {
+  min-height: 84px;
+  background: rgba(33, 17, 47, 0.45);
+  border: 1px solid rgba(169, 147, 201, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--trans-fast);
+}
+
+.calendar-day-cell:hover {
+  background: rgba(84, 42, 128, 0.35);
+  border-color: var(--border-glowing);
+}
+
+.calendar-day-cell.outside-month {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.calendar-day-cell.is-today {
+  border-color: var(--color-lavender);
+  box-shadow: inset 0 0 10px rgba(169, 147, 201, 0.2);
+}
+
+.calendar-day-cell.selected-day {
+  background: rgba(84, 42, 128, 0.5);
+  border-color: var(--color-moonlight);
+}
+
+.day-number {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-moonlight);
+}
+
+.day-entries-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-top: 4px;
+}
+
+.entry-mood-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+}
+
+.entry-mood-dot.mood-happy { background: #FFDF78; }
+.entry-mood-dot.mood-sad { background: #6EA8FE; }
+.entry-mood-dot.mood-anxious { background: #E861A3; }
+.entry-mood-dot.mood-calm { background: #A993C9; }
+.entry-mood-dot.mood-angry { background: #E63956; }
+.entry-mood-dot.mood-excited { background: #FF9E54; }
+.entry-mood-dot.mood-exhausted { background: #6C5B7B; }
+.entry-mood-dot.mood-dreamy { background: #C4B0DF; }
+.entry-mood-dot.mood-confused { background: #8E7CA6; }
+.entry-mood-dot.mood-grateful { background: #20C997; }
+
+/* ================= SELECTED DATE SIDE PANEL ================= */
+.calendar-sidebar-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.selected-date-card {
+  background: rgba(23, 15, 34, 0.88);
+  border: 1px solid var(--border-ornate);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-purple-sm);
+}
+
+.selected-date-title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  color: var(--color-moonlight);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(169, 147, 201, 0.15);
+}
+
+.selected-date-entry-card {
+  background: rgba(33, 17, 47, 0.6);
+  border: 1px solid var(--border-ornate);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 12px;
+  transition: var(--trans-fast);
+}
+.selected-date-entry-card:hover {
+  background: rgba(45, 23, 64, 0.85);
+  border-color: var(--border-glowing);
+}
+
+.entry-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.entry-card-title {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-moonlight);
+}
+
+.entry-card-mood {
+  font-size: 11px;
+  color: var(--color-lavender);
+}
+
+.entry-card-snippet {
+  font-size: 12px;
+  color: rgba(231, 221, 245, 0.8);
+  font-family: var(--font-serif);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.entry-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.entry-tag-pill {
+  font-size: 10px;
+  color: var(--color-lavender);
+  background: rgba(84, 42, 128, 0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+
+/* ================= "ON THIS DAY" CARD ================= */
+.on-this-day-card {
+  background: linear-gradient(135deg, rgba(33, 17, 47, 0.9) 0%, rgba(18, 11, 28, 0.95) 100%);
+  border: 1px solid var(--border-glowing);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-purple-sm);
+  position: relative;
+}
+
+.on-this-day-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-lavender);
+  margin-bottom: 8px;
+}
+
+.on-this-day-title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  color: var(--color-moonlight);
+  margin-bottom: 8px;
+}
+
+.on-this-day-snippet {
+  font-size: 13px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-moonlight);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+/* ================= MOOD AURA BREAKDOWN ================= */
+.mood-stats-card {
+  background: rgba(23, 15, 34, 0.88);
+  border: 1px solid var(--border-ornate);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-purple-sm);
+}
+
+.mood-stat-row {
+  margin-bottom: 10px;
+}
+
+.mood-stat-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--color-lavender);
+  margin-bottom: 4px;
+}
+
+.mood-stat-bar-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(33, 17, 47, 0.8);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.mood-stat-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.5s ease;
+}
+
+.mood-stat-bar-fill.mood-happy { background: #FFDF78; }
+.mood-stat-bar-fill.mood-sad { background: #6EA8FE; }
+.mood-stat-bar-fill.mood-anxious { background: #E861A3; }
+.mood-stat-bar-fill.mood-calm { background: #A993C9; }
+.mood-stat-bar-fill.mood-angry { background: #E63956; }
+.mood-stat-bar-fill.mood-excited { background: #FF9E54; }
+.mood-stat-bar-fill.mood-exhausted { background: #6C5B7B; }
+.mood-stat-bar-fill.mood-dreamy { background: #C4B0DF; }
+.mood-stat-bar-fill.mood-confused { background: #8E7CA6; }
+.mood-stat-bar-fill.mood-grateful { background: #20C997; }
+
+/* ================= TIMELINE OF MEMORIES ================= */
+.timeline-archive-container {
+  margin-top: 36px;
+}
+
+.timeline-search-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.memory-search-input {
+  flex: 1;
+  min-width: 220px;
+  background: rgba(23, 15, 34, 0.85);
+  border: 1px solid var(--border-ornate);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  color: var(--color-moonlight);
+  font-size: 13px;
+  outline: none;
+}
+.memory-search-input:focus {
+  border-color: var(--border-glowing);
+}
+
+.memories-timeline-list {
+  position: relative;
+  padding-left: 32px;
+}
+.memories-timeline-list::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12px;
+  width: 2px;
+  height: 100%;
+  background: rgba(169, 147, 201, 0.2);
+}
+
+.timeline-entry-item {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -32px;
+  top: 14px;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glowing);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  box-shadow: var(--shadow-purple-sm);
+}
+
+.timeline-content-card {
+  background: rgba(23, 15, 34, 0.85);
+  border: 1px solid var(--border-ornate);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  transition: var(--trans-smooth);
+}
+.timeline-content-card:hover {
+  border-color: var(--border-glowing);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-purple-sm);
+}
+
+.timeline-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.timeline-date {
+  font-size: 11px;
+  color: var(--color-lavender);
+  font-family: var(--font-heading);
+}
+.timeline-title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-moonlight);
+  flex: 1;
+  margin: 0 12px;
+}
+
+.timeline-snippet {
+  font-size: 13px;
+  color: rgba(231, 221, 245, 0.85);
+  font-family: var(--font-serif);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.timeline-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

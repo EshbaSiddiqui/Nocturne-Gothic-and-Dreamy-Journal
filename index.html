@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nocturne — A Gothic & Dreamy Personal Sanctuary</title>
+  <meta name="description" content="A gothic, dreamy, dark-purple and black digital diary to write about your daily life, decorate pages, add stickers and wax seals, and collect memories.">
+
+  <!-- Gothic & Aesthetic Stylesheets -->
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/editor.css">
+  <link rel="stylesheet" href="css/stickers.css">
+  <link rel="stylesheet" href="css/scrapbook.css">
+  <link rel="stylesheet" href="css/calendar.css">
+  <link rel="stylesheet" href="css/lock.css">
+</head>
+<body class="theme-royal-plum lace-subtle-overlay">
+
+  <!-- Ambient Floating Dust & Stars Particle Canvas -->
+  <canvas id="ambient-particles-canvas"></canvas>
+
+  <!-- ================= GOTHIC APP PASSCODE LOCK SCREEN ================= -->
+  <div id="app-passcode-lock-screen">
+    <div class="lock-screen-box">
+      <div class="lock-keyhole-icon">🗝️</div>
+      <h2 class="lock-title">Nocturne</h2>
+      <p class="lock-subtitle">This diary is sealed in velvet shadows. Enter your secret passcode to unseal.</p>
+      <input type="password" id="lock-screen-pin-input" class="lock-pin-input" placeholder="••••" maxlength="8" autocomplete="off" />
+      <div>
+        <button id="btn-lock-screen-unlock" class="gothic-btn">Unseal Sanctuary ✦</button>
+      </div>
+      <div style="margin-top: 18px;">
+        <button id="btn-lock-forgot-pin" style="background:none;border:none;color:#A993C9;font-size:0.8rem;cursor:pointer;opacity:0.7;text-decoration:underline dotted;font-family:inherit;">Forgot PIN? Reset Access</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SECRET DRAWER MODAL ================= -->
+  <div id="secret-drawer-modal" class="gothic-modal-backdrop">
+    <div class="gothic-modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">🗝️ The Secret Drawer</h3>
+        <button id="btn-close-secret-drawer" class="modal-close-btn">✕</button>
+      </div>
+      <div id="secret-passcode-prompt">
+        <p class="settings-label-desc" style="margin-bottom: 14px;">This antique drawer requires a secret combination (Default: 1313).</p>
+        <div class="gothic-input-group">
+          <input type="password" id="secret-drawer-pin-input" class="gothic-text-input" placeholder="Secret PIN" maxlength="6" />
+        </div>
+        <button id="btn-unlock-secret-drawer" class="gothic-btn btn-sm">Slide Drawer Open ✦</button>
+      </div>
+      <div id="secret-content-area" style="display: none;">
+        <div class="gothic-input-group">
+          <label class="gothic-input-label">Whisper a forbidden note:</label>
+          <input type="text" id="new-secret-note-text" class="gothic-text-input" placeholder="A secret nobody must ever know..." />
+          <button id="btn-add-secret-note" class="gothic-btn btn-sm" style="margin-top: 8px;">Slip into Secret Drawer</button>
+        </div>
+        <div id="secret-notes-list" style="max-height: 220px; overflow-y: auto; margin-top: 14px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DEAR FUTURE ME MODAL ================= -->
+  <div id="future-letter-modal" class="gothic-modal-backdrop">
+    <div class="gothic-modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">✉️ Seal a Letter to Future Self</h3>
+        <button id="btn-close-future-letter-modal" class="modal-close-btn">✕</button>
+      </div>
+      <div class="gothic-input-group">
+        <label class="gothic-input-label">Letter Inscription (Title):</label>
+        <input type="text" id="future-letter-title" class="gothic-text-input" placeholder="To Myself in the Next Season..." />
+      </div>
+      <div class="gothic-input-group">
+        <label class="gothic-input-label">Date to Unseal with Violet Wax:</label>
+        <input type="date" id="future-letter-unlock-date" class="gothic-text-input" />
+      </div>
+      <div class="gothic-input-group">
+        <label class="gothic-input-label">Your Message into the Unknown:</label>
+        <textarea id="future-letter-content" class="gothic-textarea" rows="5" placeholder="Dear future me, are you happy now? Did you survive the storm?"></textarea>
+      </div>
+      <button id="btn-save-future-letter" class="gothic-btn">Press Wax Seal & Lock ✦</button>
+    </div>
+  </div>
+
+  <!-- ================= MIDNIGHT THOUGHTS DRAWER ================= -->
+  <aside id="midnight-thoughts-drawer" class="midnight-thoughts-drawer">
+    <div class="thoughts-drawer-header">
+      <h3 class="brand-title" style="font-size: 17px;">✦ Midnight Thoughts</h3>
+      <button id="btn-close-midnight-thoughts" class="modal-close-btn">✕</button>
+    </div>
+    <p class="settings-label-desc" style="margin-bottom: 14px;">Fleeting musings whispered between midnight and dawn.</p>
+    <div class="gothic-input-group">
+      <input type="text" id="quick-thought-input" class="gothic-text-input" placeholder="Type a fleeting thought and press Enter..." />
+      <button id="btn-save-quick-thought" class="gothic-btn btn-xs" style="margin-top: 8px;">Record Whisper</button>
+    </div>
+    <div id="midnight-thoughts-list" style="flex: 1; overflow-y: auto; margin-top: 14px;"></div>
+  </aside>
+
+  <!-- ================= MAIN APP SHELL ================= -->
+  <div class="app-container">
+
+    <!-- COLLAPSIBLE SIDEBAR -->
+    <aside class="sanctuary-sidebar">
+      <div class="sidebar-header">
+        <div class="app-brand">
+          <div class="brand-icon">🦇</div>
+          <div class="brand-text-block">
+            <span class="brand-title">Nocturne</span>
+            <span class="brand-subtitle">Dark Velvet Journal</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-label">Sanctuary</span>
+        <button class="nav-item active" data-view="sanctuary">
+          <span class="nav-icon">🏰</span>
+          <span>Home Sanctuary</span>
+        </button>
+        <button class="nav-item" data-view="editor">
+          <span class="nav-icon">✒️</span>
+          <span>My Diary</span>
+        </button>
+        <button class="nav-item" data-view="calendar">
+          <span class="nav-icon">🌙</span>
+          <span>Calendar & Moods</span>
+        </button>
+        <button class="nav-item" data-view="scrapbook">
+          <span class="nav-icon">🥀</span>
+          <span>Creative Scrapbook</span>
+        </button>
+
+        <span class="nav-section-label">Archive & Curiosities</span>
+        <button class="nav-item" data-view="memories">
+          <span class="nav-icon">📜</span>
+          <span>Memory Archive</span>
+        </button>
+        <button class="nav-item" data-view="stickers">
+          <span class="nav-icon">💀</span>
+          <span>Stickers & Wax Seals</span>
+        </button>
+        <button class="nav-item" data-view="future">
+          <span class="nav-icon">✉️</span>
+          <span>Dear Future Me</span>
+        </button>
+        <button class="nav-item" data-view="settings">
+          <span class="nav-icon">⚙️</span>
+          <span>Sanctuary Settings</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="btn-secret-drawer-nav" class="secret-drawer-btn" title="Open Locked Secret Drawer">
+          <span>🗝️</span>
+          <span>Secret Drawer</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN WORKSPACE -->
+    <main class="main-workspace">
+
+      <!-- Header Bar -->
+      <header class="workspace-header">
+        <div class="header-left">
+          <button id="btn-mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle navigation">☰</button>
+          <span id="sanctuary-user-greeting" class="header-greeting-title">Your secrets live here, Moonchild.</span>
+          <button id="btn-open-user-switcher" class="gothic-btn btn-sm btn-outline" style="margin-left: 14px;" title="Switch or create personal diary profile">👑 <span id="current-user-display">Eshba</span> (Switch Diary ▾)</button>
+        </div>
+        <div class="header-right">
+          <button id="btn-toggle-sound-mute" class="icon-btn muted" title="Ambient Sound (Off)">🔇</button>
+          <button id="btn-toggle-midnight-thoughts" class="icon-btn" title="Midnight Thoughts Quick Drawer">💭</button>
+          <button id="btn-random-memory" class="gothic-btn btn-sm btn-outline" title="Unearth a random past memory">🎲 Random Memory</button>
+          <button id="btn-header-new-entry" class="gothic-btn btn-sm">✦ Write Entry</button>
+        </div>
+      </header>
+
+      <!-- View Panels Viewport -->
+      <div class="views-viewport">
+
+        <!-- ================= VIEW 1: SANCTUARY (HOME) ================= -->
+        <section id="view-sanctuary" class="app-view-panel active">
+          <!-- Hero Section -->
+          <div class="sanctuary-hero">
+            <div class="hero-background-filigree">❦</div>
+            <div class="hero-content-left">
+              <h1 class="sanctuary-title">Nocturne</h1>
+              <p class="sanctuary-subtitle">A secret gothic diary of velvet pages, silver moonlight, pressed black roses, and whispered confessions.</p>
+              <div class="hero-actions-row">
+                <button id="btn-sanctuary-write" class="gothic-btn">✒️ Write a New Entry</button>
+                <button id="btn-refresh-quote" class="gothic-btn btn-outline">✦ Daily Inspiration</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vintage Bookshelf -->
+          <div class="bookshelf-container">
+            <div class="sanctuary-section-heading">
+              <span><span class="section-icon">📚</span>The Antique Mahogany Bookshelf</span>
+              <span style="font-size: 11px; color: var(--color-lavender); font-weight: normal;">Click any spine to open its secrets</span>
+            </div>
+            <div id="sanctuary-bookshelf-items" class="shelf-wooden-base"></div>
+          </div>
+
+          <!-- Two-Column Section: Moon Phase & Daily Inspiration -->
+          <div class="sanctuary-grid-two-col">
+            <div>
+              <!-- Moon Phase Widget -->
+              <div class="sanctuary-section-heading">
+                <span><span class="section-icon">🌘</span>Lunar Orbit & Energy</span>
+              </div>
+              <div id="sanctuary-moon-widget"></div>
+
+              <!-- Recently Written Miniature Pages -->
+              <div class="sanctuary-section-heading" style="margin-top: 32px;">
+                <span><span class="section-icon">🥀</span>Recent Journal Pages</span>
+              </div>
+              <div id="sanctuary-recent-pages-grid" class="recent-mini-pages-grid"></div>
+            </div>
+
+            <!-- Sidebar Column: Daily Quote, Mini Calendar, Pinned -->
+            <div>
+              <!-- Daily Quote Card -->
+              <div class="sanctuary-quote-card">
+                <div class="quote-header-row">
+                  <span class="quote-tag">✦ Midnight Whispers</span>
+                  <button id="btn-new-prompt-gen" class="gothic-link-btn" title="Generate New Journal Prompt">↻ Prompt</button>
+                </div>
+                <p id="sanctuary-quote-text" class="sanctuary-quote-text">“We are all wanderers in the dark, collecting fragments of moonlight to illuminate our fragile dreams.”</p>
+                <div id="sanctuary-quote-author" class="sanctuary-quote-author">— Nocturne</div>
+                <div id="sanctuary-daily-prompt" style="margin-top: 12px; font-size: 12px; color: var(--color-lavender); font-style: italic; border-top: 1px dashed rgba(169, 147, 201, 0.2); padding-top: 8px;">
+                  Prompt: What is a secret feeling you have never spoken out loud?
+                </div>
+              </div>
+
+              <!-- Mini Calendar Preview -->
+              <div class="sanctuary-mini-calendar-wrap">
+                <div class="sanctuary-section-heading" style="font-size: 14px; margin-bottom: 4px;">
+                  <span><span class="section-icon">📅</span>This Month's Days</span>
+                </div>
+                <div id="sanctuary-mini-calendar" class="mini-cal-grid"></div>
+              </div>
+
+              <!-- Pinned Memories -->
+              <div class="sanctuary-section-heading" style="margin-top: 24px;">
+                <span><span class="section-icon">📌</span>Pinned Secrets</span>
+              </div>
+              <div id="sanctuary-pinned-memories"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW 2: DIARY EDITOR ================= -->
+        <section id="view-editor" class="app-view-panel">
+          <div class="editor-wrapper">
+
+            <!-- Top Action Ribbon -->
+            <div class="editor-top-bar">
+              <div class="editor-meta-info">
+                <span id="save-status-indicator" class="save-status-text">Saved in the shadows ✦</span>
+                <span id="editor-word-count" class="editor-word-count-badge">0 words · 0 characters</span>
+              </div>
+              <div class="editor-top-actions">
+                <button id="typewriter-mode-btn" class="tool-btn" title="Toggle Typewriter Mode">⌨️</button>
+                <button id="manual-save-entry-btn" class="gothic-btn btn-sm">Save Journal Page</button>
+                <button id="btn-new-entry-editor" class="gothic-btn btn-sm btn-outline">+ New Page</button>
+              </div>
+            </div>
+
+            <!-- Formatting Ribbon -->
+            <div class="editor-toolbar">
+              <div class="toolbar-group">
+                <button class="tool-btn" data-format-cmd="bold" title="Bold (Ctrl+B)"><b>B</b></button>
+                <button class="tool-btn" data-format-cmd="italic" title="Italic (Ctrl+I)"><i>I</i></button>
+                <button class="tool-btn" data-format-cmd="underline" title="Underline (Ctrl+U)"><u>U</u></button>
+                <button class="tool-btn" data-format-cmd="strikeThrough" title="Strikethrough"><s>S</s></button>
+                <button class="tool-btn" data-format-cmd="hiliteColor" data-format-val="#542a80" title="Gothic Purple Highlight">🖊️</button>
+                <input type="color" id="text-color-picker" class="toolbar-color-picker" value="#E7DDF5" title="Ink / Text Color" />
+              </div>
+
+              <div class="toolbar-group">
+                <button class="tool-btn" data-format-cmd="formatBlock" data-format-val="h2" title="Gothic Heading 2">H2</button>
+                <button class="tool-btn" data-format-cmd="formatBlock" data-format-val="h3" title="Gothic Heading 3">H3</button>
+                <button class="tool-btn" data-format-cmd="formatBlock" data-format-val="blockquote" title="Quote">❝</button>
+                <button class="tool-btn" data-format-cmd="insertUnorderedList" title="Bullet List">•</button>
+                <button class="tool-btn" data-format-cmd="insertOrderedList" title="Numbered List">1.</button>
+              </div>
+
+              <div class="toolbar-group">
+                <button class="tool-btn" data-format-cmd="justifyLeft" title="Align Left">⇤</button>
+                <button class="tool-btn" data-format-cmd="justifyCenter" title="Align Center">≡</button>
+                <button class="tool-btn" data-format-cmd="justifyRight" title="Align Right">⇥</button>
+              </div>
+
+              <div class="toolbar-group">
+                <label style="font-size: 11px; color: var(--color-lavender); margin-right: 4px;">Paper:</label>
+                <select id="page-bg-select" class="toolbar-select">
+                  <option value="purple-parchment">Purple Parchment</option>
+                  <option value="midnight">Midnight Black</option>
+                  <option value="vintage">Vintage Aged Vellum</option>
+                  <option value="starry">Starry Constellations</option>
+                  <option value="dark-floral">Dark Victorian Damask</option>
+                </select>
+              </div>
+
+              <div class="toolbar-group">
+                <label style="font-size: 11px; color: var(--color-lavender); margin-right: 4px;">Script:</label>
+                <select id="font-family-select" class="toolbar-select">
+                  <option value="serif">Cormorant Serif</option>
+                  <option value="handwritten">Caveat Handwritten</option>
+                  <option value="typewriter">Antique Typewriter</option>
+                  <option value="gothic">Gothic Medieval</option>
+                </select>
+              </div>
+
+              <div class="toolbar-group">
+                <label for="page-photo-uploader" class="tool-btn" title="Add Memory Photograph (Polaroid style)" style="cursor: pointer;">📷</label>
+                <input type="file" id="page-photo-uploader" accept="image/*" style="display: none;" />
+                <button id="btn-quick-kuromi" class="gothic-btn btn-xs" style="background: linear-gradient(135deg, #e861a3, #542a80); border-color: #ffa5c8; margin-left: 6px;" title="Attach a Kuromi Sticker">💀 + Kuromi</button>
+              </div>
+            </div>
+
+            <!-- Journal Canvas with Interactive Stickers Overlay -->
+            <div class="journal-canvas-container">
+              <div id="journal-page-canvas" class="journal-page-canvas bg-purple-parchment">
+                <!-- Ornate Corner Filigree -->
+                <div class="page-ornate-corner corner-tl"></div>
+                <div class="page-ornate-corner corner-tr"></div>
+                <div class="page-ornate-corner corner-bl"></div>
+                <div class="page-ornate-corner corner-br"></div>
+
+                <!-- Page Header: Title, Date, Mood, Tags -->
+                <div class="page-entry-header">
+                  <input type="text" id="entry-title-input" class="entry-title-input" placeholder="Title of your midnight confession..." />
+                  <div class="page-entry-meta-row">
+                    <input type="date" id="entry-date-input" class="entry-date-input" />
+                    <input type="text" id="entry-tags-input" class="entry-tags-input" placeholder="Tags (e.g. Midnight, Rain, Secrets)" />
+                  </div>
+
+                  <!-- 10 Mood Pills -->
+                  <div class="mood-picker-container">
+                    <span style="font-size: 11px; color: var(--color-lavender); align-self: center; margin-right: 4px;">Mood:</span>
+                    <button class="mood-pill-btn" data-mood="happy">✦ Happy</button>
+                    <button class="mood-pill-btn" data-mood="sad">💧 Sad</button>
+                    <button class="mood-pill-btn" data-mood="anxious">⚡ Anxious</button>
+                    <button class="mood-pill-btn" data-mood="calm">🪻 Calm</button>
+                    <button class="mood-pill-btn" data-mood="angry">🔥 Angry</button>
+                    <button class="mood-pill-btn" data-mood="excited">✨ Excited</button>
+                    <button class="mood-pill-btn" data-mood="exhausted">🥀 Exhausted</button>
+                    <button class="mood-pill-btn active" data-mood="dreamy">🌙 Dreamy</button>
+                    <button class="mood-pill-btn" data-mood="confused">🕸️ Confused</button>
+                    <button class="mood-pill-btn" data-mood="grateful">🖤 Grateful</button>
+                  </div>
+                </div>
+
+                <!-- Text Content Area -->
+                <div id="entry-content-editable" class="entry-content-editable font-serif" contenteditable="true" spellcheck="false">
+                  <p>The grandfather clock in the corridor struck twelve times...</p>
+                </div>
+
+                <!-- Personal Reflection Drawer -->
+                <div class="page-reflection-box">
+                  <div class="reflection-label">✦ Personal Reflection & Whispers</div>
+                  <select id="reflection-question-select" class="reflection-question-select">
+                    <option value="What made today memorable?">What made today memorable?</option>
+                    <option value="What is something I wish I could say?">What is something I wish I could say?</option>
+                    <option value="What am I grateful for?">What am I grateful for?</option>
+                    <option value="What do I want to remember about today?">What do I want to remember about today?</option>
+                    <option value="What am I ready to let go of?">What am I ready to let go of?</option>
+                  </select>
+                  <input type="text" id="reflection-answer-input" class="reflection-answer-input" placeholder="Write your quiet reflection here..." />
+                </div>
+
+                <!-- Draggable Stickers & Polaroids Layer -->
+                <div id="journal-stickers-layer"></div>
+              </div>
+            </div>
+
+            <!-- Built-In Interactive Sticker & Stamp Library Drawer -->
+            <div class="editor-sticker-drawer-card">
+              <div class="sticker-drawer-header">
+                <div class="sticker-category-tabs">
+                  <button class="sticker-cat-btn active" data-category="all">✦ All Stickers (Show Everything)</button>
+                  <button class="sticker-cat-btn" data-category="kuromi">💀 Kuromi (10)</button>
+                  <button class="sticker-cat-btn" data-category="roses">🥀 Dark Flora & Roses</button>
+                  <button class="sticker-cat-btn" data-category="creatures">🦇 Moths, Bats & Cats</button>
+                  <button class="sticker-cat-btn" data-category="witchy">🔮 Witchy & Celestial</button>
+                  <button class="sticker-cat-btn" data-category="coquette">🎀 Coquette & Ribbons</button>
+                  <button class="sticker-cat-btn" data-category="stamps">🏷️ Inked Stamps</button>
+                  <button class="sticker-cat-btn" data-category="seals">🩸 Wax Seals</button>
+                </div>
+                <input type="text" id="sticker-search-input" class="sticker-search-box" placeholder="Search curiosities (e.g. Kuromi, bat, rose)..." />
+              </div>
+              <div id="editor-sticker-drawer-grid" class="sticker-drawer-grid"></div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ================= VIEW 3: CALENDAR & MOODS ================= -->
+        <section id="view-calendar" class="app-view-panel">
+          <div class="calendar-page-layout">
+            <!-- Calendar Card -->
+            <div>
+              <div class="calendar-card">
+                <div class="calendar-nav-bar">
+                  <h2 id="calendar-month-year-label" class="calendar-month-title">October 2026</h2>
+                  <div style="display: flex; gap: 8px;">
+                    <button id="btn-prev-month" class="icon-btn" title="Previous Month">‹</button>
+                    <button id="btn-calendar-today" class="gothic-btn btn-xs">Today</button>
+                    <button id="btn-next-month" class="icon-btn" title="Next Month">›</button>
+                  </div>
+                </div>
+
+                <div class="calendar-weekdays-row">
+                  <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                </div>
+
+                <div id="calendar-days-grid" class="calendar-grid"></div>
+              </div>
+
+              <!-- Timeline of Memories -->
+              <div class="timeline-archive-container">
+                <div class="sanctuary-section-heading">
+                  <span><span class="section-icon">📜</span>Timeline of Past Whispers</span>
+                </div>
+                <div class="timeline-search-filter-bar">
+                  <input type="text" id="memory-search-input" class="memory-search-input" placeholder="Search entries by title, keyword, or confessions..." />
+                  <select id="memory-mood-filter" class="toolbar-select">
+                    <option value="all">All Moods</option>
+                    <option value="happy">✦ Happy</option>
+                    <option value="sad">💧 Sad</option>
+                    <option value="anxious">⚡ Anxious</option>
+                    <option value="calm">🪻 Calm</option>
+                    <option value="angry">🔥 Angry</option>
+                    <option value="excited">✨ Excited</option>
+                    <option value="exhausted">🥀 Exhausted</option>
+                    <option value="dreamy">🌙 Dreamy</option>
+                    <option value="confused">🕸️ Confused</option>
+                    <option value="grateful">🖤 Grateful</option>
+                  </select>
+                  <select id="memory-tag-filter" class="toolbar-select">
+                    <option value="all">All Tags</option>
+                  </select>
+                </div>
+                <div id="memories-timeline-list" class="memories-timeline-list"></div>
+              </div>
+            </div>
+
+            <!-- Calendar Sidebar Column -->
+            <div class="calendar-sidebar-col">
+              <!-- "On This Day" Card -->
+              <div id="on-this-day-card" class="on-this-day-card"></div>
+
+              <!-- Selected Date Entries -->
+              <div class="selected-date-card">
+                <h3 id="calendar-selected-date-title" class="selected-date-title">Select a Date</h3>
+                <div id="calendar-selected-date-entries"></div>
+              </div>
+
+              <!-- Mood Aura Breakdown -->
+              <div class="mood-stats-card">
+                <div class="sanctuary-section-heading" style="font-size: 15px;">
+                  <span><span class="section-icon">🔮</span>Monthly Mood Aura</span>
+                </div>
+                <div id="mood-stats-breakdown"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= VIEW 4: CREATIVE SCRAPBOOK ================= -->
+        <section id="view-scrapbook" class="app-view-panel">
+          <div class="scrapbook-controls-bar">
+            <div class="scrapbook-meta-inputs">
+              <select id="scrapbook-board-selector" class="toolbar-select"></select>
+              <input type="text" id="scrapbook-title-input" class="scrapbook-title-input" placeholder="Scrapbook Board Title..." />
+              <select id="scrapbook-theme-select" class="toolbar-select">
+                <option value="purple-dream">Purple Dream</option>
+                <option value="gothic-garden">Gothic Garden</option>
+                <option value="midnight-memories">Midnight Memories</option>
+                <option value="vintage-archive">Vintage Archive</option>
+              </select>
+            </div>
+            <div class="scrapbook-action-buttons">
+              <label for="scrapbook-photo-upload" class="gothic-btn btn-sm btn-outline" style="cursor: pointer;">📷 Add Photo</label>
+              <input type="file" id="scrapbook-photo-upload" accept="image/*" style="display: none;" />
+              <button id="btn-add-scrap-note" class="gothic-btn btn-sm btn-outline">📝 Note</button>
+              <button id="btn-add-washi-tape" class="gothic-btn btn-sm btn-outline">🏷️ Washi Tape</button>
+              <button id="btn-add-scrap-sticker" class="gothic-btn btn-sm btn-outline">💀 Add Sticker</button>
+              <button id="btn-add-scrap-seal" class="gothic-btn btn-sm btn-outline">🩸 Wax Seal</button>
+              <button id="btn-add-scrap-envelope" class="gothic-btn btn-sm btn-outline">✉️ Envelope</button>
+              <select id="scrapbook-note-theme-select" class="toolbar-select" title="Note Theme Palette">
+                <option value="midnight">📝 Note: Midnight Velvet</option>
+                <option value="parchment">📜 Note: Antique Sepia</option>
+                <option value="pure-black">🖤 Note: Pure Abyss</option>
+                <option value="neon">⚡ Note: Neon Noir</option>
+                <option value="crimson">🥀 Note: Blood Velvet</option>
+                <option value="lavender">🪻 Note: Dusty Lavender</option>
+              </select>
+              <button id="btn-new-scrapbook-board" class="gothic-btn btn-sm btn-outline">+ New Board</button>
+              <button id="btn-save-scrapbook-board" class="gothic-btn btn-sm">Save Board</button>
+              <button id="btn-delete-scrapbook-board" class="icon-btn" title="Delete Board">🗑️</button>
+            </div>
+          </div>
+
+          <!-- Freeform Scrapbook Board Canvas -->
+          <div id="scrapbook-freeform-canvas" class="scrapbook-freeform-canvas theme-purple-dream"></div>
+        </section>
+
+        <!-- ================= VIEW 5: MEMORIES ARCHIVE ================= -->
+        <section id="view-memories" class="app-view-panel">
+          <div class="sanctuary-hero" style="padding: 28px 36px; margin-bottom: 24px;">
+            <h2 class="sanctuary-title" style="font-size: 28px;">Memory Archive</h2>
+            <p class="sanctuary-subtitle">Search and revisit every whispered confession, starry night, and dried flower preserved across time.</p>
+          </div>
+          <!-- Re-uses search bar and timeline from calendar logic -->
+          <div id="standalone-memory-archive-container"></div>
+        </section>
+
+        <!-- ================= VIEW 6: STICKERS & WAX SEALS ================= -->
+        <section id="view-stickers" class="app-view-panel">
+          <div class="sanctuary-hero" style="padding: 28px 36px; margin-bottom: 24px;">
+            <h2 class="sanctuary-title" style="font-size: 28px;">Curiosities & Stickers</h2>
+            <p class="sanctuary-subtitle">Handcrafted gothic charms, Kuromi illustrations, pressed flora, distressed ink stamps, and embossed wax seals.</p>
+            <div style="margin-top: 14px;">
+              <select id="showcase-cat-filter" class="toolbar-select">
+                <option value="all">All Curiosities</option>
+                <option value="kuromi">💀 Kuromi Collection</option>
+                <option value="roses">🥀 Dark Flora & Roses</option>
+                <option value="creatures">🦇 Moths, Bats & Cats</option>
+                <option value="witchy">🔮 Celestial & Witchcraft</option>
+                <option value="coquette">🎀 Ribbons, Lace & Keys</option>
+                <option value="stamps">🏷️ Inked Stamps</option>
+                <option value="seals">🩸 Wax Seals</option>
+              </select>
+            </div>
+          </div>
+          <div id="stickers-showcase-grid" class="stickers-showcase-grid"></div>
+        </section>
+
+        <!-- ================= VIEW 7: DEAR FUTURE ME ================= -->
+        <section id="view-future" class="app-view-panel">
+          <div class="sanctuary-hero" style="padding: 28px 36px; margin-bottom: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+              <div>
+                <h2 class="sanctuary-title" style="font-size: 28px;">Dear Future Me</h2>
+                <p class="sanctuary-subtitle">Time-capsule letters sealed under violet wax until a chosen date in the future.</p>
+              </div>
+              <button id="btn-new-future-letter" class="gothic-btn">✉️ Seal a New Letter</button>
+            </div>
+          </div>
+          <div id="future-letters-list" class="future-letters-grid"></div>
+        </section>
+
+        <!-- ================= VIEW 8: SETTINGS ================= -->
+        <section id="view-settings" class="app-view-panel">
+          <div class="sanctuary-hero" style="padding: 28px 36px; margin-bottom: 24px;">
+            <h2 class="sanctuary-title" style="font-size: 28px;">Sanctuary Settings</h2>
+            <p class="sanctuary-subtitle">Personalize your aesthetic, privacy passcode, ambient audio, and data backups.</p>
+          </div>
+
+          <!-- Aesthetic & Theme -->
+          <div class="settings-section-card">
+            <h3 class="brand-title" style="font-size: 16px; margin-bottom: 12px;">✦ Aesthetic & Ambience</h3>
+            <div class="settings-row">
+              <div class="settings-label-group">
+                <div class="settings-label-title">Gothic Theme Palette</div>
+                <div class="settings-label-desc">Choose your preferred dark sanctuary atmosphere and accent hues.</div>
+              </div>
+              <select id="settings-theme-select" class="toolbar-select">
+                <option value="royal-plum">Royal Plum (#21112F & #542A80)</option>
+                <option value="midnight">Midnight Obsidian (#0B0812)</option>
+                <option value="moonlit-lavender">Moonlit Lavender (#A993C9)</option>
+                <option value="antique-sepia">Antique Sepia (Vintage Dark Academia)</option>
+                <option value="blood-velvet">Blood Velvet (#75173B Crimson)</option>
+              </select>
+            </div>
+
+            <div class="settings-row">
+              <div class="settings-label-group">
+                <div class="settings-label-title">Ambient Soundscape</div>
+                <div class="settings-label-desc">Procedurally generated soothing nighttime audio (100% offline).</div>
+              </div>
+              <select id="settings-sound-select" class="toolbar-select">
+                <option value="off" selected>Mute / Silence (Off)</option>
+                <option value="rain">Gentle Rain on Gothic Window</option>
+                <option value="fire">Crackling Fireplace</option>
+                <option value="chimes">Midnight Wind Chimes</option>
+              </select>
+            </div>
+
+            <div class="settings-row">
+              <div class="settings-label-group">
+                <div class="settings-label-title">Ambient Volume</div>
+                <div class="settings-label-desc">Adjust the volume of atmospheric sounds.</div>
+              </div>
+              <input type="range" id="settings-sound-volume" min="0" max="1" step="0.05" value="0.4" />
+            </div>
+
+            <div class="settings-row">
+              <div class="settings-label-group">
+                <div class="settings-label-title">Floating Stardust & Particles</div>
+                <div class="settings-label-desc">Gentle luminous particles floating upward like dust in moonlight.</div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="settings-particles-toggle" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Identity & Nickname -->
+          <div class="settings-section-card">
+            <h3 class="brand-title" style="font-size: 16px; margin-bottom: 12px;">✦ Identity & Profile</h3>
+            <div class="settings-row">
+              <div class="settings-label-group">
+                <div class="settings-label-title">Sanctuary Nickname</div>
+                <div class="settings-label-desc">How Nocturne greets you at midnight.</div>
+              </div>
+              <input type="text" id="settings-nickname-input" class="gothic-text-input" style="width: 200px;" value="Moonchild" />
+            </div>
+          </div>
+
+          <!-- Privacy & Passcode Lock -->
+          <div class="settings-section-card">
+            <h3 class="brand-title" style="font-size: 16px; margin-bottom: 12px;">🗝️ Privacy & Passcode Lock</h3>
+            <div class="settings-row">
+              <div class="settings-label-group">
+                <div class="settings-label-title">Enable Passcode Lock</div>
+                <div class="settings-label-desc">Locks the journal behind a gothic PIN screen whenever you open the app.</div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="settings-passcode-toggle" />
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="settings-row">
+              <div class="settings-label-group">
+                <div class="settings-label-title">Passcode PIN</div>
+                <div class="settings-label-desc">4 to 8 characters secret combination.</div>
+              </div>
+              <input type="password" id="settings-passcode-pin" class="gothic-text-input" style="width: 140px;" placeholder="PIN Code" />
+            </div>
+
+            <div style="font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-top: 14px; border-top: 1px dashed rgba(169, 147, 201, 0.15); padding-top: 10px;">
+              <b>Honest Privacy Statement:</b> Nocturne uses local-first client-side persistent storage (IndexedDB). Your private confessions, photos, stickers, and letters stay on your personal device and are never sent to external third-party servers.
+            </div>
+          </div>
+
+          <!-- Backup & Restore -->
+          <div class="settings-section-card">
+            <h3 class="brand-title" style="font-size: 16px; margin-bottom: 12px;">💾 Backup & Data Export</h3>
+            <div class="settings-row">
+              <div class="settings-label-group">
+                <div class="settings-label-title">Export Complete Journal (JSON)</div>
+                <div class="settings-label-desc">Save a complete backup of all diary entries, photos, stickers, scrapbooks, and future letters.</div>
+              </div>
+              <button id="btn-export-journal-json" class="gothic-btn btn-sm">Export Backup ✦</button>
+            </div>
+
+            <div class="settings-row">
+              <div class="settings-label-group">
+                <div class="settings-label-title">Import Journal Backup</div>
+                <div class="settings-label-desc">Restore past entries and scrapbooks from a Nocturne JSON backup file.</div>
+              </div>
+              <button id="btn-import-journal-trigger" class="gothic-btn btn-sm btn-outline">Import Backup...</button>
+              <input type="file" id="journal-import-file-input" accept=".json" style="display: none;" />
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast Notification Pill -->
+  <div id="app-toast-notification" class="app-toast-notification">Whispering changes...</div>
+
+  <!-- Application Logic Modules -->
+  <script src="js/stickers-data.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/moon.js"></script>
+  <script src="js/editor.js"></script>
+  <script src="js/scrapbook.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/future-vault.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- ================= MULTI-USER SANCTUARY SWITCHER MODAL ================= -->
+  <div id="user-sanctuary-modal" class="gothic-modal-backdrop">
+    <div class="gothic-modal-box" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title">👑 Private Diary Sanctuaries</h3>
+        <button id="btn-close-user-modal" class="modal-close-btn">✕</button>
+      </div>
+      <p class="settings-label-desc" style="margin-bottom: 16px;">Each moonchild has their own completely private diary entries, scrapbook boards, and memories.</p>
+
+      <div style="margin-bottom: 16px;">
+        <label class="gothic-input-label">Select Sanctuary:</label>
+        <div id="sanctuary-users-list" style="display: flex; flex-direction: column; gap: 8px; max-height: 180px; overflow-y: auto;"></div>
+      </div>
+
+      <div style="border-top: 1px solid var(--border-ornate); padding-top: 14px; margin-top: 14px;">
+        <label class="gothic-input-label">+ Create a New Personal Diary:</label>
+        <div style="display: flex; gap: 8px; margin-top: 6px;">
+          <input type="text" id="new-sanctuary-name-input" class="gothic-text-input" placeholder="Diary Name (e.g. Eshba, Raven)" maxlength="20" />
+          <button id="btn-create-new-sanctuary" class="gothic-btn btn-sm" style="white-space: nowrap;">Create ✦</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

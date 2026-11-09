@@ -1,0 +1,423 @@
+/**
+ * Nocturne - Passcode Lock Screen, Future Letters, Secret Drawer & Settings Styles
+ */
+
+/* ================= GOTHIC APP LOCK SCREEN ================= */
+#app-passcode-lock-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 40%, #1e102d 0%, #08060d 80%);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(20px);
+}
+
+#app-passcode-lock-screen.active {
+  display: flex;
+}
+
+.lock-screen-box {
+  background: rgba(23, 15, 34, 0.92);
+  border: 1px solid var(--border-glowing);
+  border-radius: var(--radius-lg);
+  padding: 44px 40px;
+  width: 360px;
+  max-width: 90vw;
+  text-align: center;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.9), 0 0 24px rgba(84, 42, 128, 0.4);
+}
+
+.lock-screen-box.shake {
+  animation: shakeLock 0.4s ease-in-out;
+}
+
+@keyframes shakeLock {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}
+
+.lock-keyhole-icon {
+  font-size: 40px;
+  color: var(--color-lavender);
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 12px rgba(169, 147, 201, 0.5));
+}
+
+.lock-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  letter-spacing: 2px;
+  color: var(--color-moonlight);
+  margin-bottom: 6px;
+}
+
+.lock-subtitle {
+  font-size: 12px;
+  color: var(--color-lavender);
+  margin-bottom: 24px;
+}
+
+.lock-pin-input {
+  width: 180px;
+  background: rgba(11, 8, 18, 0.8);
+  border: 1px solid var(--border-ornate);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 6px;
+  color: var(--color-moonlight);
+  margin-bottom: 20px;
+  outline: none;
+}
+.lock-pin-input:focus {
+  border-color: var(--border-glowing);
+  box-shadow: 0 0 12px rgba(169, 147, 201, 0.3);
+}
+
+/* ================= DEAR FUTURE ME (TIME CAPSULE) ================= */
+.future-letters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.future-letter-card {
+  background: rgba(23, 15, 34, 0.88);
+  border: 1px solid var(--border-ornate);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-purple-sm);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: var(--trans-smooth);
+}
+.future-letter-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-glowing);
+}
+
+.future-letter-card.locked {
+  border-style: dashed;
+}
+
+.letter-card-header {
+  margin-bottom: 14px;
+}
+
+.letter-title {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  color: var(--color-moonlight);
+  margin-bottom: 4px;
+}
+
+.letter-date {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.letter-badge {
+  display: inline-block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  margin-top: 6px;
+}
+.letter-badge.locked {
+  background: rgba(45, 23, 64, 0.6);
+  color: var(--color-lavender);
+  border: 1px solid rgba(169, 147, 201, 0.2);
+}
+.letter-badge.ready {
+  background: rgba(84, 42, 128, 0.7);
+  color: var(--color-moonlight);
+  border: 1px solid var(--border-glowing);
+  box-shadow: 0 0 8px rgba(169, 147, 201, 0.4);
+}
+
+.letter-locked-placeholder {
+  background: rgba(11, 8, 18, 0.6);
+  border: 1px dashed rgba(169, 147, 201, 0.2);
+  border-radius: var(--radius-md);
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--color-lavender);
+  font-size: 12px;
+  margin: 12px 0 16px;
+}
+
+.letter-locked-placeholder .lock-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.letter-full-text {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--color-moonlight);
+  line-height: 1.6;
+  margin: 12px 0 16px;
+  padding: 12px;
+  background: rgba(33, 17, 47, 0.4);
+  border-left: 2px solid var(--color-lavender);
+  border-radius: 2px;
+}
+
+.letter-card-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ================= MODALS (FUTURE LETTER & SECRET DRAWER) ================= */
+.gothic-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(11, 8, 18, 0.85);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.gothic-modal-backdrop.active {
+  display: flex;
+}
+
+.gothic-modal-box {
+  background: rgba(23, 15, 34, 0.95);
+  border: 1px solid var(--border-glowing);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  width: 520px;
+  max-width: 92vw;
+  box-shadow: var(--shadow-purple-lg);
+  position: relative;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(169, 147, 201, 0.15);
+  padding-bottom: 12px;
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  color: var(--color-moonlight);
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  color: var(--color-lavender);
+  font-size: 18px;
+  cursor: pointer;
+}
+.modal-close-btn:hover {
+  color: var(--color-moonlight);
+}
+
+.gothic-input-group {
+  margin-bottom: 16px;
+}
+.gothic-input-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-lavender);
+  margin-bottom: 6px;
+}
+.gothic-text-input,
+.gothic-textarea {
+  width: 100%;
+  background: rgba(11, 8, 18, 0.8);
+  border: 1px solid var(--border-ornate);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  color: var(--color-moonlight);
+  font-size: 13px;
+  outline: none;
+}
+.gothic-text-input:focus,
+.gothic-textarea:focus {
+  border-color: var(--border-glowing);
+}
+
+.secret-note-card {
+  background: rgba(33, 17, 47, 0.7);
+  border: 1px solid var(--border-ornate);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.secret-note-date {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.secret-note-text {
+  font-family: var(--font-handwritten);
+  font-size: 18px;
+  color: var(--color-moonlight);
+}
+.secret-note-del {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.secret-note-del:hover {
+  color: #E63956;
+}
+
+/* ================= MIDNIGHT THOUGHTS DRAWER ================= */
+.midnight-thoughts-drawer {
+  position: fixed;
+  top: 0;
+  right: -360px;
+  width: 340px;
+  height: 100vh;
+  background: rgba(23, 15, 34, 0.96);
+  border-left: 1px solid var(--border-glowing);
+  backdrop-filter: blur(16px);
+  z-index: 500;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: var(--trans-smooth);
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.8);
+}
+.midnight-thoughts-drawer.active {
+  right: 0;
+}
+
+.thoughts-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(169, 147, 201, 0.15);
+}
+
+.midnight-thought-card {
+  background: rgba(33, 17, 47, 0.7);
+  border: 1px solid var(--border-ornate);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.thought-card-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--color-lavender);
+  margin-bottom: 4px;
+}
+.thought-text {
+  font-size: 13px;
+  color: var(--color-moonlight);
+  line-height: 1.4;
+}
+
+/* ================= SETTINGS VIEW ================= */
+.settings-section-card {
+  background: rgba(23, 15, 34, 0.88);
+  border: 1px solid var(--border-ornate);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  max-width: 760px;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(169, 147, 201, 0.1);
+}
+.settings-row:last-child {
+  border-bottom: none;
+}
+
+.settings-label-group {
+  max-width: 440px;
+}
+.settings-label-title {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  color: var(--color-moonlight);
+  margin-bottom: 3px;
+}
+.settings-label-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Gothic Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #21112F;
+  border: 1px solid var(--border-ornate);
+  transition: .3s;
+  border-radius: 24px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--color-lavender);
+  transition: .3s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: var(--color-purple);
+  border-color: var(--color-lavender);
+}
+input:checked + .slider:before {
+  transform: translateX(20px);
+  background-color: #FFFFFF;
+}

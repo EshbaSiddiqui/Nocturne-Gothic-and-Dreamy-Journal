@@ -1,0 +1,239 @@
+/**
+ * Nocturne - Design System, Themes & Gothic Typography
+ * Color Palette: Deep midnight black (#0B0812), Dark plum (#21112F),
+ * Royal gothic purple (#542A80), Dusty lavender (#A993C9), Pale moonlight (#E7DDF5),
+ * Antique silver & Muted pink accents.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=MedievalSharp&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  /* Core Specification Palette */
+  --color-midnight: #0B0812;
+  --color-plum: #21112F;
+  --color-purple: #542A80;
+  --color-lavender: #A993C9;
+  --color-moonlight: #E7DDF5;
+  --color-silver: #C5BACF;
+  --color-silver-dark: #675B75;
+  --color-pink-muted: #E87CA1;
+  --color-pink-subtle: #FFA5C8;
+  --color-wine: #48132B;
+  --color-gold-muted: #D1A728;
+
+  /* Semantic UI Tokens */
+  --bg-primary: #0B0812;
+  --bg-secondary: #170F22;
+  --bg-surface: #21112F;
+  --bg-card: rgba(33, 17, 47, 0.72);
+  --bg-card-hover: rgba(45, 23, 64, 0.85);
+  --border-ornate: rgba(169, 147, 201, 0.28);
+  --border-glowing: rgba(169, 147, 201, 0.55);
+  --text-primary: #E7DDF5;
+  --text-secondary: #A993C9;
+  --text-muted: #7A6993;
+  --text-highlight: #FAF6FE;
+
+  /* Glow Shadows */
+  --shadow-purple-sm: 0 2px 10px rgba(84, 42, 128, 0.25);
+  --shadow-purple-md: 0 4px 22px rgba(84, 42, 128, 0.45);
+  --shadow-purple-lg: 0 8px 36px rgba(84, 42, 128, 0.65);
+  --shadow-moonlight: 0 0 16px rgba(231, 221, 245, 0.25);
+  --shadow-wax: 2px 6px 14px rgba(0, 0, 0, 0.75);
+
+  /* Typography */
+  --font-heading: 'Cinzel', 'Playfair Display', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-handwritten: 'Caveat', cursive;
+  --font-typewriter: 'Courier New', Courier, monospace;
+  --font-gothic: 'MedievalSharp', 'Cinzel', serif;
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Transitions */
+  --trans-smooth: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  --trans-fast: all 0.15s ease-out;
+
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+}
+
+/* ================= THEME VARIANTS ================= */
+
+/* 1. Royal Plum (Default) */
+body.theme-royal-plum {
+  --bg-primary: #0B0812;
+  --bg-secondary: #180F24;
+  --bg-surface: #21112F;
+  --bg-card: rgba(33, 17, 47, 0.72);
+  --color-purple: #542A80;
+  --color-lavender: #A993C9;
+}
+
+/* 2. Midnight Obsidian */
+body.theme-midnight {
+  --bg-primary: #06050A;
+  --bg-secondary: #0E0B14;
+  --bg-surface: #14101E;
+  --bg-card: rgba(20, 16, 30, 0.85);
+  --color-purple: #3C1F5C;
+  --color-lavender: #8E7CA6;
+  --color-moonlight: #D5CCE0;
+}
+
+/* 3. Moonlit Lavender */
+body.theme-moonlit-lavender {
+  --bg-primary: #120D1D;
+  --bg-secondary: #1F1732;
+  --bg-surface: #2E2248;
+  --bg-card: rgba(46, 34, 72, 0.75);
+  --color-purple: #6A3CA1;
+  --color-lavender: #C4B0DF;
+  --color-moonlight: #F2ECFA;
+}
+
+/* 4. Antique Sepia */
+body.theme-antique-sepia {
+  --bg-primary: #120F0D;
+  --bg-secondary: #1E1714;
+  --bg-surface: #2C211B;
+  --bg-card: rgba(44, 33, 27, 0.8);
+  --color-purple: #5A3626;
+  --color-lavender: #C2A58C;
+  --color-moonlight: #F4E9DB;
+  --border-ornate: rgba(194, 165, 140, 0.3);
+}
+
+/* 5. Blood Velvet */
+body.theme-blood-velvet {
+  --bg-primary: #0F060A;
+  --bg-secondary: #1E0C15;
+  --bg-surface: #2E101F;
+  --bg-card: rgba(46, 16, 31, 0.78);
+  --color-purple: #75173B;
+  --color-lavender: #DDA3BC;
+  --color-moonlight: #FCEEF4;
+  --border-ornate: rgba(221, 163, 188, 0.3);
+}
+
+/* 6. Pure Abyss — Absolute Black */
+body.theme-pure-black {
+  --bg-primary: #000000;
+  --bg-secondary: #080808;
+  --bg-surface: #111111;
+  --bg-card: rgba(15, 15, 15, 0.92);
+  --bg-card-hover: rgba(25, 25, 25, 0.98);
+  --color-purple: #6A1FAE;
+  --color-lavender: #B590E8;
+  --color-moonlight: #E8E0F6;
+  --border-ornate: rgba(181, 144, 232, 0.22);
+  --border-glowing: rgba(181, 144, 232, 0.5);
+  --text-primary: #E8E0F6;
+  --text-secondary: #B590E8;
+  --text-muted: #614D7A;
+  --shadow-purple-sm: 0 2px 10px rgba(106, 31, 174, 0.3);
+  --shadow-purple-md: 0 4px 22px rgba(106, 31, 174, 0.5);
+}
+
+/* 7. Neon Noir — Electric Purple & Black */
+body.theme-neon-noir {
+  --bg-primary: #030308;
+  --bg-secondary: #0A0618;
+  --bg-surface: #100C22;
+  --bg-card: rgba(12, 8, 28, 0.92);
+  --bg-card-hover: rgba(20, 12, 40, 0.98);
+  --color-purple: #8B00FF;
+  --color-lavender: #CC44FF;
+  --color-moonlight: #F0E0FF;
+  --border-ornate: rgba(139, 0, 255, 0.35);
+  --border-glowing: rgba(204, 68, 255, 0.8);
+  --text-primary: #F0E0FF;
+  --text-secondary: #CC44FF;
+  --text-muted: #6B3A8A;
+  --text-highlight: #FFFFFF;
+  --shadow-purple-sm: 0 2px 12px rgba(139, 0, 255, 0.4);
+  --shadow-purple-md: 0 4px 28px rgba(139, 0, 255, 0.65);
+  --shadow-purple-lg: 0 8px 48px rgba(139, 0, 255, 0.85);
+}
+
+/* Neon Noir special: neon glow on headings & accents */
+body.theme-neon-noir .brand-title,
+body.theme-neon-noir .section-title,
+body.theme-neon-noir .sanctuary-headline,
+body.theme-neon-noir .gothic-btn:hover {
+  text-shadow: 0 0 8px #CC44FF, 0 0 20px #8B00FF, 0 0 40px #5500BB;
+}
+body.theme-neon-noir .gothic-btn {
+  border-color: rgba(139, 0, 255, 0.7);
+  box-shadow: 0 0 8px rgba(139, 0, 255, 0.4), inset 0 0 10px rgba(139, 0, 255, 0.1);
+}
+body.theme-neon-noir .sanctuary-sidebar {
+  border-right: 1px solid rgba(139, 0, 255, 0.4);
+  box-shadow: 2px 0 20px rgba(139, 0, 255, 0.2);
+}
+body.theme-neon-noir .nav-item.active {
+  background: rgba(139, 0, 255, 0.15);
+  border-left: 3px solid #8B00FF;
+  box-shadow: inset 0 0 12px rgba(139, 0, 255, 0.2), 2px 0 12px rgba(139, 0, 255, 0.3);
+}
+
+/* ================= GLOBAL RESETS & SCROLLBAR ================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  line-height: 1.6;
+}
+
+/* Custom Gothic Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-purple);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(169, 147, 201, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-lavender);
+}
+
+/* Ornate Border Accents */
+.ornate-border {
+  border: 1px solid var(--border-ornate);
+  box-shadow: 0 0 10px rgba(84, 42, 128, 0.15);
+  position: relative;
+}
+
+.ornate-corners::before,
+.ornate-corners::after {
+  content: '✦';
+  position: absolute;
+  font-size: 10px;
+  color: var(--color-lavender);
+  opacity: 0.6;
+}
+.ornate-corners::before { top: 3px; left: 5px; }
+.ornate-corners::after { bottom: 3px; right: 5px; }
+
+/* Subtle lace texture overlay */
+.lace-subtle-overlay {
+  background-image: radial-gradient(rgba(169, 147, 201, 0.05) 1px, transparent 0);
+  background-size: 16px 16px;
+}
