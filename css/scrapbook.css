@@ -83,6 +83,35 @@
   user-select: none;
   transition: transform 0.05s ease-out;
 }
+
+/* Sticker, Seal & Envelope sizing — must have explicit size to show */
+.scrap-type-sticker,
+.scrap-type-seal,
+.scrap-type-wax-seal,
+.scrap-type-envelope {
+  width: 110px;
+  height: 110px;
+}
+.scrap-type-sticker .scrap-sticker-graphic,
+.scrap-type-seal .scrap-sticker-graphic,
+.scrap-type-wax-seal .scrap-sticker-graphic,
+.scrap-type-envelope .scrap-sticker-graphic {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scrap-type-sticker img,
+.scrap-type-seal img,
+.scrap-type-wax-seal img,
+.scrap-type-envelope img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  display: block;
+}
 .scrap-canvas-item:active {
   cursor: grabbing;
 }
