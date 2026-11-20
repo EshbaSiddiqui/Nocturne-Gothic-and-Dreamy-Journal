@@ -98,15 +98,39 @@ class NocturneScrapbook {
       });
     }
 
+    // Sticker Picker Button
     if (this.dom.addStickerBtn) {
       this.dom.addStickerBtn.addEventListener('click', () => {
-        const stickers = window.STICKERS_DATA || [];
-        if (stickers.length > 0) {
-          const s = stickers[Math.floor(Math.random() * stickers.length)];
+        if (window.openUniversalPicker) {
+          window.openUniversalPicker('scrapbook', 'kuromi');
+        } else {
+          const stickers = (window.STICKERS_DATA || []).filter(s => s.category === 'kuromi');
+          const s = stickers[Math.floor(Math.random() * stickers.length)] || window.STICKERS_DATA[0];
           this.addStickerToScrapbook(s);
-          // 🎵 Sticker pop sound
-          if (window.nocturneAudio) window.nocturneAudio.playStickerPop();
-          if (window.nocturneApp) window.nocturneApp.showNotification(`Added ${s.name} to scrapbook ✦`);
+        }
+      });
+    }
+
+    // Wax Seal Picker Button
+    const btnSeal = document.getElementById('btn-add-scrap-seal');
+    if (btnSeal) {
+      btnSeal.addEventListener('click', () => {
+        if (window.openUniversalPicker) {
+          window.openUniversalPicker('scrapbook', 'seals');
+        } else {
+          this.addWaxSealElement();
+        }
+      });
+    }
+
+    // Envelope Picker Button
+    const btnEnv = document.getElementById('btn-add-scrap-envelope');
+    if (btnEnv) {
+      btnEnv.addEventListener('click', () => {
+        if (window.openUniversalPicker) {
+          window.openUniversalPicker('scrapbook', 'envelopes');
+        } else {
+          this.addEnvelopeElement();
         }
       });
     }
@@ -278,31 +302,58 @@ class NocturneScrapbook {
         </div>
       `;
     } else if (item.type === 'seal' || item.type === 'wax-seal') {
-      const sData = window.STICKERS_DATA ? window.STICKERS_DATA.find(s => s.id === (item.sealId || item.stickerId)) : null;
+      const sId = item.sealId || item.stickerId;
+      const sData = window.STICKERS_DATA ? window.STICKERS_DATA.find(s => s.id === sId) : null;
+      let graphic = '<div style="font-size:32px;">🪤</div>';
+      if (sData) {
+        graphic = sData.img
+          ? `<img src="${sData.img}" class="sticker-img-asset" alt="${sData.name}" draggable="false" />`
+          : (sData.svg || graphic);
+      }
       el.innerHTML = `
-        <div class="scrap-seal-graphic" style="filter: drop-shadow(0 4px 12px rgba(0,0,0,0.8)); cursor: grab;">
-          ${sData ? sData.svg : '<div style="font-size:32px;">\uD83E\uDE78</div>'}
+        <div class="scrap-sticker-graphic" style="filter: drop-shadow(0 4px 12px rgba(0,0,0,0.8)); cursor: grab;">
+          ${graphic}
         </div>
         <div class="item-selection-controls">
-          <button class="item-ctrl-btn btn-rotate">\u21BB</button>
-          <button class="item-ctrl-btn btn-delete">\u2715</button>
+          <button class="item-ctrl-btn btn-rotate">↻</button>
+          <button class="item-ctrl-btn btn-delete">✕</button>
         </div>
       `;
     } else if (item.type === 'envelope') {
-      const eData = window.STICKERS_DATA ? window.STICKERS_DATA.find(s => s.id === (item.envelopeId || item.stickerId)) : null;
+      const eId = item.envelopeId || item.stickerId;
+      const eData = window.STICKERS_DATA ? window.STICKERS_DATA.find(s => s.id === eId) : null;
+      let graphic = '<div style="font-size:32px;">✉️</div>';
+      if (eData) {
+        graphic = eData.img
+          ? `<img src="${eData.img}" class="sticker-img-asset" alt="${eData.name}" draggable="false" />`
+          : (eData.svg || graphic);
+      }
       el.innerHTML = `
-        <div class="scrap-envelope-graphic" style="filter: drop-shadow(0 4px 14px rgba(0,0,0,0.7)); cursor: grab;">
-          ${eData ? eData.svg : '<div style="font-size:32px;">\u2709\uFE0F</div>'}
+        <div class="scrap-sticker-graphic" style="filter: drop-shadow(0 4px 14px rgba(0,0,0,0.7)); cursor: grab;">
+          ${graphic}
         </div>
         <div class="item-selection-controls">
-          <button class="item-ctrl-btn btn-rotate">\u21BB</button>
-          <button class="item-ctrl-btn btn-delete">\u2715</button>
+          <button class="item-ctrl-btn btn-rotate">↻</button>
+          <button class="item-ctrl-btn btn-delete">✕</button>
         </div>
       `;
     } else if (item.type === 'sticker') {
-      const sData = window.STICKERS_DATA.find(s => s.id === item.stickerId);
+      const sId = item.stickerId || item.sealId || item.envelopeId;
+      const sData = window.STICKERS_DATA ? window.STICKERS_DATA.find(s => s.id === sId) : null;
+      let graphic = '✦';
+      if (sData) {
+        if (sData.img) {
+          graphic = `<img src="${sData.img}" class="sticker-img-asset" alt="${sData.name}" draggable="false" />`;
+        } else if (sData.isInteractiveEnvelope) {
+          graphic = sData.svg;
+        } else {
+          graphic = sData.svg || '✦';
+        }
+      }
       el.innerHTML = `
-        <div class="scrap-sticker-graphic">${sData ? sData.svg : '✦'}</div>
+        <div class="scrap-sticker-graphic" style="filter: drop-shadow(0 4px 12px rgba(0,0,0,0.8)); cursor: grab;">
+          ${graphic}
+        </div>
         <div class="item-selection-controls">
           <button class="item-ctrl-btn btn-rotate">↻</button>
           <button class="item-ctrl-btn btn-delete">✕</button>

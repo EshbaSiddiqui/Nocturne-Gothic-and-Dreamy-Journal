@@ -351,8 +351,12 @@ class NocturneEditor {
     el.style.transform = `rotate(${item.rotate || 0}deg)`;
     el.style.zIndex = item.zIndex || 2;
 
+    const graphic = rawSticker.img
+      ? `<img src="${rawSticker.img}" class="sticker-img-asset" alt="${rawSticker.name}" draggable="false" />`
+      : (rawSticker.svg || '✦');
+
     el.innerHTML = `
-      <div class="item-inner-graphic">${rawSticker.svg}</div>
+      <div class="item-inner-graphic">${graphic}</div>
       <div class="item-selection-controls">
         <button class="item-ctrl-btn btn-rotate" title="Rotate Sticker">↻</button>
         <button class="item-ctrl-btn btn-layer-up" title="Bring Forward">▲</button>
@@ -651,7 +655,13 @@ class NocturneEditor {
       const card = document.createElement('div');
       card.className = 'sticker-picker-thumb';
       card.title = `${sticker.name} (Click to place on page)`;
-      card.innerHTML = sticker.svg;
+      if (sticker.img) {
+        card.innerHTML = `<img src="${sticker.img}" alt="${sticker.name}" draggable="false" />`;
+      } else if (sticker.isInteractiveEnvelope) {
+        card.innerHTML = `<div style="font-size:32px; text-align:center;">✉️</div><span style="font-size:10px; color:#A993C9;">Envelope</span>`;
+      } else {
+        card.innerHTML = sticker.svg;
+      }
 
       card.addEventListener('click', () => {
         this.addStickerToCanvas(sticker);

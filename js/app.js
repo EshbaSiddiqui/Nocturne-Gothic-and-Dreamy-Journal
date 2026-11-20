@@ -72,6 +72,17 @@ class NocturneApp {
   async init() {
     // 1. Setup Navigation & UI FIRST (SYNCHRONOUSLY) so user clicks ALWAYS work immediately!
     this.initNavigation();
+
+    // Editor Sticker Gallery Button
+    const btnOpenEditorPicker = document.getElementById('btn-open-editor-sticker-picker');
+    if (btnOpenEditorPicker) {
+      btnOpenEditorPicker.addEventListener('click', () => {
+        if (window.openUniversalPicker) {
+          window.openUniversalPicker('editor', 'kuromi');
+        }
+      });
+    }
+
     this.initUserSanctuarySwitcher();
     this.initSanctuaryWidgets();
     this.initSettingsView();
@@ -1011,3 +1022,124 @@ window.addEventListener('DOMContentLoaded', () => {
   window.nocturneApp = new NocturneApp();
   window.nocturneApp.init();
 });
+
+
+// ================= USER INTERACTIVE ENVELOPE HANDLERS =================
+window.openEnvelope = function(element) {
+  if (element) element.classList.add('opened');
+  if (window.nocturneAudio) window.nocturneAudio.playEnvelope();
+  setTimeout(() => {
+    const modal = document.getElementById('secretModal');
+    if (modal) modal.style.display = 'flex';
+  }, 400);
+};
+
+window.closeEnvelope = function() {
+  const modal = document.getElementById('secretModal');
+  if (modal) modal.style.display = 'none';
+  document.querySelectorAll('.gothic-envelope-container').forEach(el => el.classList.remove('opened'));
+};
+
+// ================= UNIVERSAL STICKER & SEAL PICKER MODAL =================
+window.openUniversalPicker = function(targetMode = 'editor', defaultCategory = 'all') {
+  const modal = document.getElementById('universal-sticker-picker-modal');
+  const tabsContainer = document.getElementById('universal-picker-tabs');
+  const gridContainer = document.getElementById('universal-picker-grid');
+  const searchInput = document.getElementById('universal-picker-search');
+  const titleEl = document.getElementById('universal-picker-title');
+  const btnClose = document.getElementById('btn-close-universal-picker');
+
+  if (!modal || !gridContainer || !window.STICKERS_DATA) return;
+
+  if (titleEl) {
+    titleEl.textContent = targetMode === 'scrapbook' ? '📓 Add to Scrapbook: Choose Curiosity or Seal' : '✒️ Add to Diary: Choose Curiosity or Seal';
+  }
+
+  modal.style.display = 'flex';
+
+  let currentCategory = defaultCategory;
+
+  const renderGrid = (cat = 'all', query = '') => {
+    gridContainer.innerHTML = '';
+    let list = window.STICKERS_DATA;
+    if (query) {
+      list = list.filter(s => s.name.toLowerCase().includes(query) || (s.tags && s.tags.some(t => t.toLowerCase().includes(query))));
+    } else if (cat !== 'all') {
+      list = list.filter(s => s.category === cat);
+    }
+
+    if (list.length === 0) {
+      gridContainer.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #A993C9; padding: 20px;">No curiosities found in the dark...</div>';
+      return;
+    }
+
+    list.forEach(sticker => {
+      const item = document.createElement('div');
+      item.className = 'universal-picker-item';
+      item.title = `${sticker.name} (Click to attach)`;
+
+      if (sticker.img) {
+        item.innerHTML = `<img src="${sticker.img}" alt="${sticker.name}" draggable="false" />`;
+      } else if (sticker.isInteractiveEnvelope) {
+        item.innerHTML = `<div style="font-size:32px;">✉️</div><span style="font-size:10px; color:#A993C9; margin-top:4px;">Envelope</span>`;
+      } else {
+        item.innerHTML = sticker.svg;
+      }
+
+      item.addEventListener('click', () => {
+        if (targetMode === 'editor' && window.nocturneEditor) {
+          window.nocturneEditor.addStickerToCanvas(sticker);
+        } else if (targetMode === 'scrapbook' && window.nocturneScrapbook) {
+          if (sticker.category === 'seals') {
+            window.nocturneScrapbook.addWaxSealElement(sticker.id);
+          } else if (sticker.category === 'envelopes' || sticker.isInteractiveEnvelope) {
+            window.nocturneScrapbook.addEnvelopeElement(sticker.id);
+          } else {
+            window.nocturneScrapbook.addStickerToScrapbook(sticker);
+          }
+        }
+        modal.style.display = 'none';
+        if (window.nocturneAudio) window.nocturneAudio.playStickerPop();
+        if (window.nocturneApp) window.nocturneApp.showNotification(`Attached ${sticker.name} ✦`);
+      });
+
+      gridContainer.appendChild(item);
+    });
+  };
+
+  // Render Category Tabs
+  if (tabsContainer && window.STICKER_CATEGORIES) {
+    tabsContainer.innerHTML = '';
+    window.STICKER_CATEGORIES.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = `gothic-btn btn-xs ${c.id === currentCategory ? '' : 'btn-outline'}`;
+      btn.style.cssText = 'white-space: nowrap; margin-bottom: 4px;';
+      btn.textContent = `${c.icon || '✦'} ${c.name}`;
+      btn.addEventListener('click', () => {
+        currentCategory = c.id;
+        tabsContainer.querySelectorAll('button').forEach(b => b.classList.add('btn-outline'));
+        btn.classList.remove('btn-outline');
+        if (searchInput) searchInput.value = '';
+        renderGrid(currentCategory);
+      });
+      tabsContainer.appendChild(btn);
+    });
+  }
+
+  if (searchInput) {
+    searchInput.value = '';
+    searchInput.oninput = (e) => {
+      renderGrid(currentCategory, e.target.value.toLowerCase().trim());
+    };
+  }
+
+  if (btnClose) {
+    btnClose.onclick = () => { modal.style.display = 'none'; };
+  }
+
+  modal.onclick = (e) => {
+    if (e.target === modal) modal.style.display = 'none';
+  };
+
+  renderGrid(currentCategory);
+};

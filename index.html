@@ -319,6 +319,7 @@
                 <label for="page-photo-uploader" class="tool-btn" title="Add Memory Photograph (Polaroid style)" style="cursor: pointer;">📷</label>
                 <input type="file" id="page-photo-uploader" accept="image/*" style="display: none;" />
                 <button id="btn-quick-kuromi" class="gothic-btn btn-xs" style="background: linear-gradient(135deg, #e861a3, #542a80); border-color: #ffa5c8; margin-left: 6px;" title="Attach a Kuromi Sticker">💀 + Kuromi</button>
+                <button id="btn-open-editor-sticker-picker" class="gothic-btn btn-xs" style="background: linear-gradient(135deg, #542a80, #2b1f4a); border-color: #9d6fe0; margin-left: 6px;" title="Open Full Sticker &amp; Wax Seal Gallery">🦇 + Sticker / Seal</button>
               </div>
             </div>
 
@@ -712,6 +713,33 @@
           <button id="btn-create-new-sanctuary" class="gothic-btn btn-sm" style="white-space: nowrap;">Create ✦</button>
         </div>
       </div>
+    </div>
+  </div>
+
+
+  <!-- USER'S INTERACTIVE MIDNIGHT CONFESSION MODAL -->
+  <div id="secretModal" class="secret-confession-modal">
+    <div class="secret-confession-content">
+      <button class="confession-close-btn" onclick="closeEnvelope()">&times;</button>
+      <h3>✦ A Whispered Confession ✦</h3>
+      <p class="secret-confession-modal-text">“The grandfather clock in the corridor struck twelve times, and the seal finally gave way...”</p>
+      <textarea id="secret-envelope-msg-input" class="secret-confession-textarea" placeholder="Write your secret message here..."></textarea>
+      <div style="text-align: center; margin-top: 14px;">
+        <button class="gothic-btn btn-sm" onclick="closeEnvelope()">Reseal in Shadows ✦</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNIVERSAL STICKER & WAX SEAL PICKER MODAL -->
+  <div id="universal-sticker-picker-modal" class="universal-sticker-picker-modal">
+    <div class="universal-sticker-picker-box">
+      <div class="modal-header">
+        <h3 class="modal-title" id="universal-picker-title">🦇 Choose a Curiosity or Seal</h3>
+        <button id="btn-close-universal-picker" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="sticker-drawer-tabs" id="universal-picker-tabs" style="margin-bottom: 12px; display: flex; flex-wrap: wrap; gap: 6px;"></div>
+      <input type="text" id="universal-picker-search" class="gothic-text-input" placeholder="Search stickers, seals, Kuromi..." style="margin-bottom: 12px;" />
+      <div class="universal-picker-grid" id="universal-picker-grid"></div>
     </div>
   </div>
 

@@ -5,17 +5,17 @@
  */
 
 const STICKER_CATEGORIES = [
-  { id: 'all', name: '✦ All Curiosities (All Stickers)', icon: '✦' },
-  { id: 'kuromi', name: '💀 Kuromi Collection', icon: '💀' },
+  { id: 'all', name: '✦ All Curiosities', icon: '✦' },
+  { id: 'kuromi', name: '💀 Kuromi & Sanrio (37 Stickers)', icon: '💀' },
+  { id: 'seals', name: '🩸 Realistic Wax Seals (9 Seals)', icon: '🩸' },
+  { id: 'gothic', name: '🕸️ Gothic Charms & Nyx', icon: '🕸️' },
+  { id: 'envelopes', name: '✉️ Interactive Envelopes', icon: '✉️' },
+  { id: 'washi', name: '🎀 Purple & Black Washi Tape', icon: '🎀' },
   { id: 'roses', name: '🥀 Dark Flora & Roses', icon: '🥀' },
-  { id: 'creatures', name: '🦇 Moths, Bats & Cats', icon: '🦇' },
-  { id: 'witchy', name: '🔮 Celestial & Witchcraft', icon: '🔮' },
-  { id: 'coquette', name: '🎀 Ribbons, Lace & Keys', icon: '🎀' },
-  { id: 'stamps', name: '🏷️ Inked Stamps', icon: '🏷️' },
-  { id: 'seals', name: '🩸 Wax Seals (All Colors)', icon: '🩸' },
-  { id: 'washi', name: '🎀 Washi Tapes (Purple & Black)', icon: '🎀' },
-  { id: 'envelopes', name: '✉️ Gothic Envelopes', icon: '✉️' },
-  { id: 'charms', name: '🕸️ Aesthetic Gothic Charms', icon: '🕸️' }
+  { id: 'creatures', name: '🦇 Moths & Bats', icon: '🦇' },
+  { id: 'witchy', name: '🔮 Witchcraft & Celestial', icon: '🔮' },
+  { id: 'coquette', name: '🎀 Ribbons & Lace', icon: '🎀' },
+  { id: 'stamps', name: '🏷️ Inked Stamps', icon: '🏷️' }
 ];
 
 const STICKERS_DATA = [
@@ -1201,8 +1201,529 @@ const STICKERS_DATA = [
     </svg>`
   }
 
+,
+  {
+    id: "png-sanrio-sticker_01_my_melody",
+    category: "kuromi",
+    name: "Kuromi & Friends: 01 My Melody",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "my melody"],
+    img: "assets/stickers/sanrio/sticker_01_my_melody.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_01_my_melody.png" class="sticker-img-asset" alt="Kuromi & Friends: 01 My Melody" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_02_my_melody",
+    category: "kuromi",
+    name: "Kuromi & Friends: 02 My Melody",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "my melody"],
+    img: "assets/stickers/sanrio/sticker_02_my_melody.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_02_my_melody.png" class="sticker-img-asset" alt="Kuromi & Friends: 02 My Melody" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_03_my_melody",
+    category: "kuromi",
+    name: "Kuromi & Friends: 03 My Melody",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "my melody"],
+    img: "assets/stickers/sanrio/sticker_03_my_melody.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_03_my_melody.png" class="sticker-img-asset" alt="Kuromi & Friends: 03 My Melody" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_04_kuromi",
+    category: "kuromi",
+    name: "Kuromi & Friends: 04 Kuromi",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_04_kuromi.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_04_kuromi.png" class="sticker-img-asset" alt="Kuromi & Friends: 04 Kuromi" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_05_kuromi",
+    category: "kuromi",
+    name: "Kuromi & Friends: 05 Kuromi",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_05_kuromi.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_05_kuromi.png" class="sticker-img-asset" alt="Kuromi & Friends: 05 Kuromi" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_06_kuromi",
+    category: "kuromi",
+    name: "Kuromi & Friends: 06 Kuromi",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_06_kuromi.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_06_kuromi.png" class="sticker-img-asset" alt="Kuromi & Friends: 06 Kuromi" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_07_badtz_maru",
+    category: "kuromi",
+    name: "Kuromi & Friends: 07 Badtz Maru",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "badtz maru"],
+    img: "assets/stickers/sanrio/sticker_07_badtz_maru.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_07_badtz_maru.png" class="sticker-img-asset" alt="Kuromi & Friends: 07 Badtz Maru" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_08_badtz_maru",
+    category: "kuromi",
+    name: "Kuromi & Friends: 08 Badtz Maru",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "badtz maru"],
+    img: "assets/stickers/sanrio/sticker_08_badtz_maru.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_08_badtz_maru.png" class="sticker-img-asset" alt="Kuromi & Friends: 08 Badtz Maru" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_09_badtz_maru",
+    category: "kuromi",
+    name: "Kuromi & Friends: 09 Badtz Maru",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "badtz maru"],
+    img: "assets/stickers/sanrio/sticker_09_badtz_maru.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_09_badtz_maru.png" class="sticker-img-asset" alt="Kuromi & Friends: 09 Badtz Maru" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_10_my_melody",
+    category: "kuromi",
+    name: "Kuromi & Friends: 10 My Melody",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "my melody"],
+    img: "assets/stickers/sanrio/sticker_10_my_melody.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_10_my_melody.png" class="sticker-img-asset" alt="Kuromi & Friends: 10 My Melody" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_11_my_melody",
+    category: "kuromi",
+    name: "Kuromi & Friends: 11 My Melody",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "my melody"],
+    img: "assets/stickers/sanrio/sticker_11_my_melody.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_11_my_melody.png" class="sticker-img-asset" alt="Kuromi & Friends: 11 My Melody" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_12_my_melody",
+    category: "kuromi",
+    name: "Kuromi & Friends: 12 My Melody",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "my melody"],
+    img: "assets/stickers/sanrio/sticker_12_my_melody.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_12_my_melody.png" class="sticker-img-asset" alt="Kuromi & Friends: 12 My Melody" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_13_kuromi",
+    category: "kuromi",
+    name: "Kuromi & Friends: 13 Kuromi",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_13_kuromi.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_13_kuromi.png" class="sticker-img-asset" alt="Kuromi & Friends: 13 Kuromi" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_14_kuromi",
+    category: "kuromi",
+    name: "Kuromi & Friends: 14 Kuromi",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_14_kuromi.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_14_kuromi.png" class="sticker-img-asset" alt="Kuromi & Friends: 14 Kuromi" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_15_kuromi",
+    category: "kuromi",
+    name: "Kuromi & Friends: 15 Kuromi",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_15_kuromi.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_15_kuromi.png" class="sticker-img-asset" alt="Kuromi & Friends: 15 Kuromi" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_16_badtz_maru",
+    category: "kuromi",
+    name: "Kuromi & Friends: 16 Badtz Maru",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "badtz maru"],
+    img: "assets/stickers/sanrio/sticker_16_badtz_maru.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_16_badtz_maru.png" class="sticker-img-asset" alt="Kuromi & Friends: 16 Badtz Maru" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_17_badtz_maru",
+    category: "kuromi",
+    name: "Kuromi & Friends: 17 Badtz Maru",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "badtz maru"],
+    img: "assets/stickers/sanrio/sticker_17_badtz_maru.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_17_badtz_maru.png" class="sticker-img-asset" alt="Kuromi & Friends: 17 Badtz Maru" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_18_badtz_maru",
+    category: "kuromi",
+    name: "Kuromi & Friends: 18 Badtz Maru",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "badtz maru"],
+    img: "assets/stickers/sanrio/sticker_18_badtz_maru.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_18_badtz_maru.png" class="sticker-img-asset" alt="Kuromi & Friends: 18 Badtz Maru" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_19_my_melody",
+    category: "kuromi",
+    name: "Kuromi & Friends: 19 My Melody",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "my melody"],
+    img: "assets/stickers/sanrio/sticker_19_my_melody.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_19_my_melody.png" class="sticker-img-asset" alt="Kuromi & Friends: 19 My Melody" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_20_my_melody",
+    category: "kuromi",
+    name: "Kuromi & Friends: 20 My Melody",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "my melody"],
+    img: "assets/stickers/sanrio/sticker_20_my_melody.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_20_my_melody.png" class="sticker-img-asset" alt="Kuromi & Friends: 20 My Melody" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_21_kuromi",
+    category: "kuromi",
+    name: "Kuromi & Friends: 21 Kuromi",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_21_kuromi.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_21_kuromi.png" class="sticker-img-asset" alt="Kuromi & Friends: 21 Kuromi" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_22_kuromi",
+    category: "kuromi",
+    name: "Kuromi & Friends: 22 Kuromi",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_22_kuromi.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_22_kuromi.png" class="sticker-img-asset" alt="Kuromi & Friends: 22 Kuromi" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_23_kuromi",
+    category: "kuromi",
+    name: "Kuromi & Friends: 23 Kuromi",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_23_kuromi.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_23_kuromi.png" class="sticker-img-asset" alt="Kuromi & Friends: 23 Kuromi" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_24_badtz_maru",
+    category: "kuromi",
+    name: "Kuromi & Friends: 24 Badtz Maru",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "badtz maru"],
+    img: "assets/stickers/sanrio/sticker_24_badtz_maru.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_24_badtz_maru.png" class="sticker-img-asset" alt="Kuromi & Friends: 24 Badtz Maru" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_25_badtz_maru",
+    category: "kuromi",
+    name: "Kuromi & Friends: 25 Badtz Maru",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "badtz maru"],
+    img: "assets/stickers/sanrio/sticker_25_badtz_maru.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_25_badtz_maru.png" class="sticker-img-asset" alt="Kuromi & Friends: 25 Badtz Maru" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_26_badtz_maru",
+    category: "kuromi",
+    name: "Kuromi & Friends: 26 Badtz Maru",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "badtz maru"],
+    img: "assets/stickers/sanrio/sticker_26_badtz_maru.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_26_badtz_maru.png" class="sticker-img-asset" alt="Kuromi & Friends: 26 Badtz Maru" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_27_my_melody",
+    category: "kuromi",
+    name: "Kuromi & Friends: 27 My Melody",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "my melody"],
+    img: "assets/stickers/sanrio/sticker_27_my_melody.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_27_my_melody.png" class="sticker-img-asset" alt="Kuromi & Friends: 27 My Melody" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_28_my_melody",
+    category: "kuromi",
+    name: "Kuromi & Friends: 28 My Melody",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "my melody"],
+    img: "assets/stickers/sanrio/sticker_28_my_melody.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_28_my_melody.png" class="sticker-img-asset" alt="Kuromi & Friends: 28 My Melody" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_29_badtz_maru",
+    category: "kuromi",
+    name: "Kuromi & Friends: 29 Badtz Maru",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "badtz maru"],
+    img: "assets/stickers/sanrio/sticker_29_badtz_maru.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_29_badtz_maru.png" class="sticker-img-asset" alt="Kuromi & Friends: 29 Badtz Maru" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_30_my_melody",
+    category: "kuromi",
+    name: "Kuromi & Friends: 30 My Melody",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii", "my melody"],
+    img: "assets/stickers/sanrio/sticker_30_my_melody.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_30_my_melody.png" class="sticker-img-asset" alt="Kuromi & Friends: 30 My Melody" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_31_gothic_icon",
+    category: "kuromi",
+    name: "Kuromi & Friends: 31 Gothic Icon",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_31_gothic_icon.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_31_gothic_icon.png" class="sticker-img-asset" alt="Kuromi & Friends: 31 Gothic Icon" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_32_gothic_icon",
+    category: "kuromi",
+    name: "Kuromi & Friends: 32 Gothic Icon",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_32_gothic_icon.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_32_gothic_icon.png" class="sticker-img-asset" alt="Kuromi & Friends: 32 Gothic Icon" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_33_gothic_icon",
+    category: "kuromi",
+    name: "Kuromi & Friends: 33 Gothic Icon",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_33_gothic_icon.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_33_gothic_icon.png" class="sticker-img-asset" alt="Kuromi & Friends: 33 Gothic Icon" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_34_gothic_icon",
+    category: "kuromi",
+    name: "Kuromi & Friends: 34 Gothic Icon",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_34_gothic_icon.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_34_gothic_icon.png" class="sticker-img-asset" alt="Kuromi & Friends: 34 Gothic Icon" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_35_gothic_icon",
+    category: "kuromi",
+    name: "Kuromi & Friends: 35 Gothic Icon",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_35_gothic_icon.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_35_gothic_icon.png" class="sticker-img-asset" alt="Kuromi & Friends: 35 Gothic Icon" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_36_gothic_icon",
+    category: "kuromi",
+    name: "Kuromi & Friends: 36 Gothic Icon",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_36_gothic_icon.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_36_gothic_icon.png" class="sticker-img-asset" alt="Kuromi & Friends: 36 Gothic Icon" draggable="false" />`
+  },
+  {
+    id: "png-sanrio-sticker_37_gothic_icon",
+    category: "kuromi",
+    name: "Kuromi & Friends: 37 Gothic Icon",
+    tags: ["kuromi", "sanrio", "gothic", "kawaii"],
+    img: "assets/stickers/sanrio/sticker_37_gothic_icon.png",
+    svg: `<img src="assets/stickers/sanrio/sticker_37_gothic_icon.png" class="sticker-img-asset" alt="Kuromi & Friends: 37 Gothic Icon" draggable="false" />`
+  },
+  {
+    id: "png-seal-seal_realistic_1_violet_moon",
+    category: "seals",
+    name: "Realistic Wax Seal: 1 Violet Moon",
+    tags: ["wax seal", "realistic", "embossed", "seal", "stamp"],
+    img: "assets/stickers/seals/seal_realistic_1_violet_moon.png",
+    svg: `<img src="assets/stickers/seals/seal_realistic_1_violet_moon.png" class="sticker-img-asset" alt="Realistic Wax Seal: 1 Violet Moon" draggable="false" />`
+  },
+  {
+    id: "png-seal-seal_realistic_2_black_star",
+    category: "seals",
+    name: "Realistic Wax Seal: 2 Black Star",
+    tags: ["wax seal", "realistic", "embossed", "seal", "stamp"],
+    img: "assets/stickers/seals/seal_realistic_2_black_star.png",
+    svg: `<img src="assets/stickers/seals/seal_realistic_2_black_star.png" class="sticker-img-asset" alt="Realistic Wax Seal: 2 Black Star" draggable="false" />`
+  },
+  {
+    id: "png-seal-seal_realistic_3_grey_rosette",
+    category: "seals",
+    name: "Realistic Wax Seal: 3 Grey Rosette",
+    tags: ["wax seal", "realistic", "embossed", "seal", "stamp"],
+    img: "assets/stickers/seals/seal_realistic_3_grey_rosette.png",
+    svg: `<img src="assets/stickers/seals/seal_realistic_3_grey_rosette.png" class="sticker-img-asset" alt="Realistic Wax Seal: 3 Grey Rosette" draggable="false" />`
+  },
+  {
+    id: "png-seal-seal_v1_purple_leaf",
+    category: "seals",
+    name: "Realistic Wax Seal: V1 Purple Leaf",
+    tags: ["wax seal", "realistic", "embossed", "seal", "stamp"],
+    img: "assets/stickers/seals/seal_v1_purple_leaf.png",
+    svg: `<img src="assets/stickers/seals/seal_v1_purple_leaf.png" class="sticker-img-asset" alt="Realistic Wax Seal: V1 Purple Leaf" draggable="false" />`
+  },
+  {
+    id: "png-seal-seal_v2_black_rose",
+    category: "seals",
+    name: "Realistic Wax Seal: V2 Black Rose",
+    tags: ["wax seal", "realistic", "embossed", "seal", "stamp"],
+    img: "assets/stickers/seals/seal_v2_black_rose.png",
+    svg: `<img src="assets/stickers/seals/seal_v2_black_rose.png" class="sticker-img-asset" alt="Realistic Wax Seal: V2 Black Rose" draggable="false" />`
+  },
+  {
+    id: "png-seal-seal_v3_red_crown",
+    category: "seals",
+    name: "Realistic Wax Seal: V3 Red Crown",
+    tags: ["wax seal", "realistic", "embossed", "seal", "stamp"],
+    img: "assets/stickers/seals/seal_v3_red_crown.png",
+    svg: `<img src="assets/stickers/seals/seal_v3_red_crown.png" class="sticker-img-asset" alt="Realistic Wax Seal: V3 Red Crown" draggable="false" />`
+  },
+  {
+    id: "png-seal-seal_v4_pink_flower",
+    category: "seals",
+    name: "Realistic Wax Seal: V4 Pink Flower",
+    tags: ["wax seal", "realistic", "embossed", "seal", "stamp"],
+    img: "assets/stickers/seals/seal_v4_pink_flower.png",
+    svg: `<img src="assets/stickers/seals/seal_v4_pink_flower.png" class="sticker-img-asset" alt="Realistic Wax Seal: V4 Pink Flower" draggable="false" />`
+  },
+  {
+    id: "png-seal-seal_v5_gold_laurel",
+    category: "seals",
+    name: "Realistic Wax Seal: V5 Gold Laurel",
+    tags: ["wax seal", "realistic", "embossed", "seal", "stamp"],
+    img: "assets/stickers/seals/seal_v5_gold_laurel.png",
+    svg: `<img src="assets/stickers/seals/seal_v5_gold_laurel.png" class="sticker-img-asset" alt="Realistic Wax Seal: V5 Gold Laurel" draggable="false" />`
+  },
+  {
+    id: "png-seal-seal_v6_silver_moon",
+    category: "seals",
+    name: "Realistic Wax Seal: V6 Silver Moon",
+    tags: ["wax seal", "realistic", "embossed", "seal", "stamp"],
+    img: "assets/stickers/seals/seal_v6_silver_moon.png",
+    svg: `<img src="assets/stickers/seals/seal_v6_silver_moon.png" class="sticker-img-asset" alt="Realistic Wax Seal: V6 Silver Moon" draggable="false" />`
+  },
+  {
+    id: "png-goth-01_nyx_character",
+    category: "gothic",
+    name: "Gothic: Nyx Character",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/01_nyx_character.png",
+    svg: `<img src="assets/stickers/gothic/01_nyx_character.png" class="sticker-img-asset" alt="Gothic: Nyx Character" draggable="false" />`
+  },
+  {
+    id: "png-goth-02_rose",
+    category: "gothic",
+    name: "Gothic: Rose",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/02_rose.png",
+    svg: `<img src="assets/stickers/gothic/02_rose.png" class="sticker-img-asset" alt="Gothic: Rose" draggable="false" />`
+  },
+  {
+    id: "png-goth-03_bat",
+    category: "gothic",
+    name: "Gothic: Bat",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/03_bat.png",
+    svg: `<img src="assets/stickers/gothic/03_bat.png" class="sticker-img-asset" alt="Gothic: Bat" draggable="false" />`
+  },
+  {
+    id: "png-goth-04_crescent_moon",
+    category: "gothic",
+    name: "Gothic: Crescent Moon",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/04_crescent_moon.png",
+    svg: `<img src="assets/stickers/gothic/04_crescent_moon.png" class="sticker-img-asset" alt="Gothic: Crescent Moon" draggable="false" />`
+  },
+  {
+    id: "png-goth-05_heart",
+    category: "gothic",
+    name: "Gothic: Heart",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/05_heart.png",
+    svg: `<img src="assets/stickers/gothic/05_heart.png" class="sticker-img-asset" alt="Gothic: Heart" draggable="false" />`
+  },
+  {
+    id: "png-goth-06_crown",
+    category: "gothic",
+    name: "Gothic: Crown",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/06_crown.png",
+    svg: `<img src="assets/stickers/gothic/06_crown.png" class="sticker-img-asset" alt="Gothic: Crown" draggable="false" />`
+  },
+  {
+    id: "png-goth-07_candle",
+    category: "gothic",
+    name: "Gothic: Candle",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/07_candle.png",
+    svg: `<img src="assets/stickers/gothic/07_candle.png" class="sticker-img-asset" alt="Gothic: Candle" draggable="false" />`
+  },
+  {
+    id: "png-goth-08_key",
+    category: "gothic",
+    name: "Gothic: Key",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/08_key.png",
+    svg: `<img src="assets/stickers/gothic/08_key.png" class="sticker-img-asset" alt="Gothic: Key" draggable="false" />`
+  },
+  {
+    id: "png-goth-09_skull",
+    category: "gothic",
+    name: "Gothic: Skull",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/09_skull.png",
+    svg: `<img src="assets/stickers/gothic/09_skull.png" class="sticker-img-asset" alt="Gothic: Skull" draggable="false" />`
+  },
+  {
+    id: "png-goth-10_wax_seal",
+    category: "gothic",
+    name: "Gothic: Wax Seal",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/10_wax_seal.png",
+    svg: `<img src="assets/stickers/gothic/10_wax_seal.png" class="sticker-img-asset" alt="Gothic: Wax Seal" draggable="false" />`
+  },
+  {
+    id: "png-goth-11_label_memento_mori",
+    category: "gothic",
+    name: "Gothic: Label Memento Mori",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/11_label_memento_mori.png",
+    svg: `<img src="assets/stickers/gothic/11_label_memento_mori.png" class="sticker-img-asset" alt="Gothic: Label Memento Mori" draggable="false" />`
+  },
+  {
+    id: "png-goth-12_label_gothic_greetings",
+    category: "gothic",
+    name: "Gothic: Label Gothic Greetings",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/12_label_gothic_greetings.png",
+    svg: `<img src="assets/stickers/gothic/12_label_gothic_greetings.png" class="sticker-img-asset" alt="Gothic: Label Gothic Greetings" draggable="false" />`
+  },
+  {
+    id: "png-goth-13_label_dark_musings",
+    category: "gothic",
+    name: "Gothic: Label Dark Musings",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/13_label_dark_musings.png",
+    svg: `<img src="assets/stickers/gothic/13_label_dark_musings.png" class="sticker-img-asset" alt="Gothic: Label Dark Musings" draggable="false" />`
+  },
+  {
+    id: "png-goth-14_label_the_hours_passed",
+    category: "gothic",
+    name: "Gothic: Label The Hours Passed",
+    tags: ["gothic", "aesthetic", "vintage", "dark", "charms"],
+    img: "assets/stickers/gothic/14_label_the_hours_passed.png",
+    svg: `<img src="assets/stickers/gothic/14_label_the_hours_passed.png" class="sticker-img-asset" alt="Gothic: Label The Hours Passed" draggable="false" />`
+  },
+  {
+    id: "interactive-midnight-envelope",
+    category: "envelopes",
+    name: "Interactive Midnight Envelope (Unseals)",
+    tags: ["envelope", "interactive", "secret", "whisper", "unseal", "wax seal"],
+    svg: `<div class="gothic-envelope-container" onclick="openEnvelope(this)">
+  <svg class="envelope-svg" width="240" height="160" viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+    <!-- Envelope Background -->
+    <rect width="240" height="160" rx="4" fill="#14111e" stroke="#4a3b6c" stroke-width="1.5"/>
+    
+    <!-- Envelope Flap (animates open) -->
+    <g class="envelope-flap">
+      <polygon points="0,0 120,95 240,0" fill="#1b172a" stroke="#4a3b6c" stroke-width="1.5"/>
+    </g>
+    
+    <line x1="0" y1="160" x2="90" y2="90" stroke="#312648" stroke-width="1"/>
+    <line x1="240" y1="160" x2="150" y2="90" stroke="#312648" stroke-width="1"/>
+    
+    <!-- Constellation Dots -->
+    <circle cx="40" cy="40" r="1.5" fill="#e2d9f3" opacity="0.8"/>
+    <circle cx="60" cy="30" r="2" fill="#e2d9f3"/>
+    <line x1="40" y1="40" x2="60" y2="30" stroke="#9d8cb5" stroke-width="0.5" stroke-dasharray="2 2"/>
+    
+    <!-- Wax Seal (lifts when opened) -->
+    <g class="wax-seal-group">
+      <circle cx="120" cy="95" r="16" fill="#2b1f1a" stroke="#70523d" stroke-width="1.5"/>
+      <circle cx="120" cy="95" r="12" fill="#3a2a22"/>
+      <text x="120" y="100" font-size="12" text-anchor="middle" fill="#d1b280">💀</text>
+    </g>
+  </svg>
+  <div class="envelope-label">Click to unseal...</div>
+</div>`,
+    isInteractiveEnvelope: true
+  }
 ];
 
-// Export to window
-window.STICKERS_DATA = STICKERS_DATA;
-window.STICKER_CATEGORIES = STICKER_CATEGORIES;
+
+// Helper function to render any sticker (PNG image or SVG markup)
+window.getStickerGraphic = function(sticker) {
+  if (!sticker) return '✦';
+  if (sticker.img) {
+    return `<img src="${sticker.img}" class="sticker-img-asset" alt="${sticker.name || ''}" draggable="false" />`;
+  }
+  return sticker.svg || '✦';
+};

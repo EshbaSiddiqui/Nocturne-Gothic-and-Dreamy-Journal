@@ -14,14 +14,12 @@ PORT = 8080
 
 class NocturneRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
-        # Enable CORS and caching headers for local development
         self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
         self.send_header('Pragma', 'no-cache')
         self.send_header('Expires', '0')
         super().end_headers()
 
     def guess_type(self, path):
-        # Ensure SVG, CSS, JS have proper content types
         if path.endswith('.svg'):
             return 'image/svg+xml'
         if path.endswith('.css'):
@@ -46,9 +44,8 @@ def run():
     url = f"http://localhost:{port}"
 
     print("=" * 60)
-    print(" ✦ NOCTURNE — Personal Gothic Diary & Sanctuary ✦")
-    print(f" Serving at: {url}")
-    print(" Press Ctrl+C to close the sanctuary.")
+    print(f"NOCTURNE - Personal Gothic Diary & Sanctuary")
+    print(f"Serving live at: {url}")
     print("=" * 60)
 
     try:
@@ -61,7 +58,6 @@ def run():
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
-            print("\nSanctuary closed into the shadows. Farewell.")
             httpd.server_close()
 
 if __name__ == "__main__":
