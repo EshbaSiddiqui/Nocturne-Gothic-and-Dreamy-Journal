@@ -544,7 +544,7 @@ class NocturneScrapbook {
   }
 
   addWaxSealElement(sealId) {
-    if (!this.currentBoard) return;
+    if (!this.currentBoard) this.createNewBoard();
     const seals = (window.STICKERS_DATA || []).filter(s => s.category === 'seals');
     const chosen = sealId ? seals.find(s => s.id === sealId) : (seals[Math.floor(Math.random() * seals.length)] || null);
     if (!chosen) return;
@@ -565,7 +565,7 @@ class NocturneScrapbook {
   }
 
   addEnvelopeElement(envId) {
-    if (!this.currentBoard) return;
+    if (!this.currentBoard) this.createNewBoard();
     const envs = (window.STICKERS_DATA || []).filter(s => s.category === 'envelopes');
     const chosen = envId ? envs.find(s => s.id === envId) : (envs[Math.floor(Math.random() * envs.length)] || null);
     if (!chosen) return;
@@ -586,7 +586,8 @@ class NocturneScrapbook {
   }
 
   addStickerToScrapbook(stickerData) {
-    if (!this.currentBoard) return;
+    if (!this.currentBoard) this.createNewBoard();
+    if (!stickerData) return;
     const item = {
       id: 'sc-stk-' + Date.now(),
       type: 'sticker',
@@ -599,6 +600,8 @@ class NocturneScrapbook {
     this.currentBoard.elements.push(item);
     const el = this.createItemDOM(item);
     this.selectItem(el, item);
+    if (window.nocturneAudio) window.nocturneAudio.playStickerPop();
+    if (window.nocturneApp) window.nocturneApp.showNotification('Attached ' + stickerData.name + ' to scrapbook \u2726');
   }
 }
 

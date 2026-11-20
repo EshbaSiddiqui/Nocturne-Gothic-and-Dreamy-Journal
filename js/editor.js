@@ -313,7 +313,21 @@ class NocturneEditor {
   }
 
   addStickerToCanvas(stickerData) {
-    if (!this.currentEntry) return;
+    if (!this.currentEntry) {
+      const today = new Date().toISOString().split('T')[0];
+      this.currentEntry = {
+        id: 'entry-' + Date.now(),
+        title: this.dom.titleInput ? this.dom.titleInput.value : '',
+        date: this.dom.dateInput ? (this.dom.dateInput.value || today) : today,
+        mood: 'midnight-calm',
+        tags: [],
+        content: this.dom.contentArea ? this.dom.contentArea.innerHTML : '',
+        pageBackground: this.dom.backgroundSelect ? this.dom.backgroundSelect.value : 'purple-parchment',
+        fontStyle: this.dom.fontFamilySelect ? this.dom.fontFamilySelect.value : 'serif',
+        stickers: [],
+        images: []
+      };
+    }
 
     // Default centered position with slight random offset
     const randomOffset = Math.floor(Math.random() * 40 - 20);

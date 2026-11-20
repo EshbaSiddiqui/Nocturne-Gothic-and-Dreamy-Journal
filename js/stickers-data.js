@@ -162,6 +162,7 @@ const STICKERS_DATA = [
         <text x="86" y="20" fill="#E7DDF5" font-family="serif" font-size="10">z</text>
       </g>
     </svg>`
+  },
   {
     id: 'kuromi-dark-heart',
     category: 'kuromi',
